@@ -26,4 +26,4 @@ Current version used was v0.3.2.
 # WPF GUI Example 
 An example project is available that is using jxl.Net
 
-![jxl NET-WPF-GUI](https://user-images.githubusercontent.com/1071741/110150179-3bd62100-7ddf-11eb-8ff8-6d3728de45e6.jpg)
+![jxl NET-WPF-GUI](https://user-images.githubusercontent.com/1071741/110199940-4a621e00-7e5b-11eb-8c77-9e76aa06a9c7.jpg)
