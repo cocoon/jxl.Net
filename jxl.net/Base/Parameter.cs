@@ -23,6 +23,7 @@ namespace jxlNET
         Value
     }
 
+    // ENCODER
     [XmlInclude(typeof(jxlNET.Encoder.Parameters.ColorSpace))]
     [XmlInclude(typeof(jxlNET.ColorSpaceBase))]
     [XmlInclude(typeof(jxlNET.ColorSpaceName))]
@@ -87,6 +88,26 @@ namespace jxlNET
 
     [XmlInclude(typeof(Verbose))]
 
+
+    // DECODER
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.AllowMoreProgressiveSteps))]
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.AllowPartialFiles))]
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.BitsPerSample))]
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.ColorSpace))]
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.DisplayNits))]
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.DownSampling))]
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.JPEG))]
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.JpegQuality))]
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.JPEG_up_to_0_3_2))]
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.NumReps))]
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.NumThreads))]
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.PrintInfo))]
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.PrintProfile))]
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.PrintReadBytes))]
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.Quiet))]
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.ToneMap))]
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.UseSJpeg))]
+    [XmlInclude(typeof(jxlNET.Deccoder.Parameters.Version))]
 
     public abstract class Parameter
     {
