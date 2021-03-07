@@ -20,19 +20,14 @@ namespace jxlNET.Deccoder.Parameters
 {
 
     /// <summary>
-    /// 'j', "pixels_to_jpeg",
-    ///  By default, if the input JPEG XL contains a recompressed JPEG file, 
-    ///  djxl reconstructs the exact original JPEG file. This flag causes the decoder 
-    ///  to instead decode the image to pixels and encode a new (lossy) JPEG. 
-    ///  The output file if provided must be a .jpg or .jpeg file.,
-    ///  &amp;decode_to_pixels, &amp;SetBooleanTrue);
+    /// '\0', "quiet", "silence output (except for errors)"
     /// </summary>
-    public class JPEG : jxlNET.Parameter
+    public class Quiet : jxlNET.Parameter
     {
-        public override string Description => "j, pixels_to_jpeg, By default, if the input JPEG XL contains a recompressed JPEG file, djxl reconstructs the exact original JPEG file. This flag causes the decoder to instead decode the image to pixels and encode a new (lossy) JPEG. The output file if provided must be a .jpg or .jpeg file.";
-        public override string Name => "JPEG";
-        public override string Param => "-j";
-        public override string ParamLong => "--pixels_to_jpeg";
+        public override string Description => "\0, quiet, silence output(except for errors)";
+        public override string Name => "Quiet";
+        public override string Param => ParamLong;
+        public override string ParamLong => "--quiet";
         public override OptionType OptionType => OptionType.Flag;
 
         string MinVersion = "0.3.3"; //changed in 0.3.3: https://gitlab.com/wg1/jpeg-xl/-/commit/b1c6fdcd3f6f2720daf3eb953761f1087206f981?page=2
