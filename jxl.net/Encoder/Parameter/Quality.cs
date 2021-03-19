@@ -18,12 +18,12 @@ using System.Xml.Serialization;
 namespace jxlNET.Encoder.Parameters
 {
     /// <summary>
-    /// 'q', "quality", "QUALITY", "Quality setting.
+    /// 'q', "quality", "QUALITY", "Quality setting (is remapped to --distance).
     /// Range: -inf .. 100. 100 = mathematically lossless. Default for already-lossy input (JPEG/GIF). Positive quality values roughly match libjpeg quality.
     /// </summary>
     public class Quality : jxlNET.Parameter
     {
-        public override string Description => "q, quality, QUALITY, Quality setting.\nRange: -inf.. 100.\n 100 = mathematically lossless. Default for already-lossy input (JPEG/GIF).\n Positive quality values roughly match libjpeg quality.";
+        public override string Description => "q, quality, QUALITY, Quality setting (is remapped to --distance).\nRange: -inf.. 100.\n 100 = mathematically lossless. Default for already-lossy input (JPEG/GIF).\n Positive quality values roughly match libjpeg quality.";
         public override string Name => "Quality";
         public override string Param => "-q";
         public override string ParamLong => "--quality";

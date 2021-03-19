@@ -19,15 +19,16 @@ namespace jxlNET.Encoder.Parameters
 {
 
     /// <summary>
-    /// "container", "Always encode using container format (default: only if needed)",
+    /// "strip","Do not encode using container format (strips Exif/XMP/JPEG bitstream reconstruction data)"
     /// </summary>
-    public class Container : jxlNET.Parameter
+    public class Strip : jxlNET.Parameter
     {
-        public override string Description => "container, Always encode using container format (default: only if needed)";
-        public override string Name => "Container";
+        public override string Description => "strip, Do not encode using container format (strips Exif/XMP/JPEG bitstream reconstruction data)";
+        public override string Name => "Strip";
         public override string Param => ParamLong;
-        public override string ParamLong => "--container";
+        public override string ParamLong => "--strip";
         public override OptionType OptionType => OptionType.Flag;
 
+        string MinVersion = "0.3.4"; //added in 0.3.4: https://gitlab.com/wg1/jpeg-xl/-/commit/f2aeba7e3d091314eaccb64748791e1f4e2cf0a6?expanded=1&page=2#cfde100f1256fa3ef950648f50b0968da2c55a00_302_308
     }
 }

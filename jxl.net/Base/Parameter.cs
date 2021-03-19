@@ -80,6 +80,7 @@ namespace jxlNET
     [XmlInclude(typeof(SaliencyNumProgressiveSteps))]
     [XmlInclude(typeof(SaliencyThreshold))]
     [XmlInclude(typeof(Speed))]
+    [XmlInclude(typeof(Strip))]
 
     [XmlInclude(typeof(TargetBPP))]
     [XmlInclude(typeof(TargetSize))]
