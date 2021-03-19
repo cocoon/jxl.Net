@@ -11,6 +11,8 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 using System.Runtime.CompilerServices;
 
 namespace jxlNET.Encoder
@@ -28,9 +30,9 @@ namespace jxlNET.Encoder
 
         public static string BaseDir = AppDomain.CurrentDomain.BaseDirectory;
 
-        private  string outDir = System.IO.Path.Combine(BaseDir, "Out");
-        public string OutDir 
-        { 
+        private string outDir = System.IO.Path.Combine(BaseDir, "Out");
+        public string OutDir
+        {
             get { return outDir; }
             set { outDir = value; NotifyPropertyChanged(); }
         }
@@ -66,6 +68,79 @@ namespace jxlNET.Encoder
             set { validate = value; NotifyPropertyChanged(); }
         }
 
+
+        private Version encoderVersion;
+
+        public Version EncoderVersion
+        {
+            get { return encoderVersion; }
+            set { encoderVersion = value; NotifyPropertyChanged(); }
+        }
+
+        public Version TryGetEncoderVersionInfo()
+        {
+            Version result = null;
+
+            if (File.Exists(EncoderPath))
+            {
+
+                var version = FileVersionInfo.GetVersionInfo(EncoderPath);
+                Console.WriteLine("version from FileVersionInfo: " + version);
+
+                if (!string.IsNullOrEmpty(version.FileVersion))
+                {
+                    System.Version.TryParse(version.FileVersion, out result);
+                    EncoderVersion = result;
+                }
+                else
+                {
+                    try
+                    {
+                        ProcessStartInfo startInfo = new ProcessStartInfo
+                        {
+                            Arguments = new Parameters.Version().Param,
+                            FileName = EncoderPath,
+                            WorkingDirectory = WorkingDirectory,
+
+                            UseShellExecute = false,
+                            RedirectStandardOutput = true,
+                            RedirectStandardError = true,
+                            CreateNoWindow = true
+                        };
+
+                        Process proc = new Process();
+                        proc.StartInfo = startInfo;
+                        proc.Start();
+
+                        string processStandardOutput = proc.StandardOutput.ReadLine();
+                        //string processStandardError = proc.StandardError.ReadToEnd();
+
+                        if(!string.IsNullOrEmpty(processStandardOutput))
+                        {
+                            string searchString = "[v";
+                            int index = processStandardOutput.IndexOf(searchString);
+                            if (index != -1)
+                            {
+                                string v = processStandardOutput.Substring(index + searchString.Length, 5);
+                                Console.WriteLine("version from output: " + v);
+                                string[] vArray = v.Split('.');
+                                if (vArray != null && vArray.Length == 3)
+                                {
+                                    System.Version.TryParse(v, out result);
+                                    Console.WriteLine("Version parsed: " + result);
+                                    EncoderVersion = result;
+                                }
+                            }
+                        }
+                    }
+                    catch(Exception ex)
+                    { }
+                }
+            }
+            
+            
+            return result;
+        }
 
 
 

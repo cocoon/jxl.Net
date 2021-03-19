@@ -62,11 +62,17 @@ namespace WpfExample
             // Create Options for the encoder and activate validation
             EncoderOptions encOptions = new EncoderOptions
             {
+                EncoderPath = @"c:\dev\jxl\cjxl.exe",
                 Validate = true
             };
 
             // Create new encoder with previously prepared Options
             Enc = new Encoder(encOptions);
+
+            //Try to get versions
+            encOptions.TryGetEncoderVersionInfo();
+            enc.Decoder.Options.TryGetDecoderVersionInfo();
+
 
             // Set example image as input file
             if (File.Exists(example))

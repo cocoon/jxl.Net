@@ -72,6 +72,13 @@
                     </TextBox.Style>
                 </TextBox>
 
+
+                <Label>Encoder Version:</Label>
+                <TextBox ToolTip="{Binding Enc.Options.EncoderVersion, Mode=OneWay}" Text="{Binding Enc.Options.EncoderVersion, Mode=OneWay}" IsReadOnly="True" VerticalContentAlignment="Center"/>
+
+
+
+
                 <Label>Decoder:</Label>
                 
                 <!--<TextBox Text="{Binding Enc.Decoder.Options.DecoderPath}" IsReadOnly="True" ToolTip="{Binding Enc.Decoder.Options.DecoderPath}"/>-->
@@ -94,6 +101,10 @@
                 </TextBox>
 
                 <!--<TextBox Text="{Binding Enc.Decoder.Options.DecoderPath}" IsReadOnly="True" ToolTip="{Binding Enc.Decoder.Options.DecoderPath}"/>-->
+
+                <Label>Decoder Version:</Label>
+                <TextBox ToolTip="{Binding Enc.Decoder.Options.DecoderVersion, Mode=OneWay}" Text="{Binding Enc.Decoder.Options.DecoderVersion, Mode=OneWay}" IsReadOnly="True" VerticalContentAlignment="Center"/>
+
             </DockPanel>
             
             <DockPanel LastChildFill="True">

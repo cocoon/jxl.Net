@@ -11,11 +11,13 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 using System.Runtime.CompilerServices;
 
 namespace jxlNET.Decoder
 {
-    public class DecoderOptions
+    public class DecoderOptions : INotifyPropertyChanged
     {
         #region NotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -55,6 +57,81 @@ namespace jxlNET.Decoder
             get { return workingDirectory; }
             set { workingDirectory = value; NotifyPropertyChanged(); }
         }
+
+
+        private Version decoderVersion;
+
+        public Version DecoderVersion
+        {
+            get { return decoderVersion; }
+            set { decoderVersion = value; NotifyPropertyChanged(); }
+        }
+
+        public Version TryGetDecoderVersionInfo()
+        {
+            Version result = null;
+
+            if (File.Exists(DecoderPath))
+            {
+
+                var version = FileVersionInfo.GetVersionInfo(DecoderPath);
+                Console.WriteLine("version from FileVersionInfo: " + version);
+
+                if (!string.IsNullOrEmpty(version.FileVersion))
+                {
+                    System.Version.TryParse(version.FileVersion, out result);
+                    DecoderVersion = result;
+                }
+                else
+                {
+                    try
+                    {
+                        ProcessStartInfo startInfo = new ProcessStartInfo
+                        {
+                            Arguments = new Deccoder.Parameters.Version().Param,
+                            FileName = DecoderPath,
+                            WorkingDirectory = WorkingDirectory,
+
+                            UseShellExecute = false,
+                            RedirectStandardOutput = true,
+                            RedirectStandardError = true,
+                            CreateNoWindow = true
+                        };
+
+                        Process proc = new Process();
+                        proc.StartInfo = startInfo;
+                        proc.Start();
+
+                        string processStandardOutput = proc.StandardOutput.ReadLine();
+                        //string processStandardError = proc.StandardError.ReadToEnd();
+
+                        if (!string.IsNullOrEmpty(processStandardOutput))
+                        {
+                            string searchString = "[v";
+                            int index = processStandardOutput.IndexOf(searchString);
+                            if (index != -1)
+                            {
+                                string v = processStandardOutput.Substring(index + searchString.Length, 5);
+                                Console.WriteLine("version from output: " + v);
+                                string[] vArray = v.Split('.');
+                                if (vArray != null && vArray.Length == 3)
+                                {
+                                    System.Version.TryParse(v, out result);
+                                    Console.WriteLine("Version parsed: " + result);
+                                    DecoderVersion = result;
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    { }
+                }
+            }
+
+
+            return result;
+        }
+
 
 
 
