@@ -30,4 +30,4 @@ An example project is available that is using jxl.Net
 
 ## jxlViewer with slider to compare images
 
-![jxlViewer](https://user-images.githubusercontent.com/1071741/111986879-ca041400-8b0e-11eb-9fce-8c7b6f5a5074.jpg)
+![jxlViewer_slider](https://user-images.githubusercontent.com/1071741/112016170-c4b5c200-8b2c-11eb-9040-24c7deea991b.jpg)
