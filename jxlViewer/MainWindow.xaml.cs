@@ -3,7 +3,6 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -102,7 +101,7 @@ namespace jxlViewer
         public string Image2
         {
             get { return _image2; }
-            set { _image2 = value; NotifyPropertyChanged(); NotifyPropertyChanged("ImageSource2"); }
+            set { _image2 = value; initWatcher(value); NotifyPropertyChanged(); NotifyPropertyChanged("ImageSource2"); }
         }
 
 
@@ -128,10 +127,64 @@ namespace jxlViewer
 
         #endregion
 
+        #region FileSystemWatcher
+        private FileSystemWatcher _watcher = new FileSystemWatcher();
+
+        private void initWatcher(string Path)
+        {
+            if (_watcher != null)
+            {
+                _watcher.EnableRaisingEvents = false;
+
+                var dir = new FileInfo(Image2).Directory.FullName;
+                if (Directory.Exists(dir))
+                {
+                    Console.WriteLine("FileSystemWatcher(dir) " + dir);
+
+                    _watcher = new FileSystemWatcher(dir);
+                    _watcher.IncludeSubdirectories = false;
+                    _watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName | NotifyFilters.Size;
+                    _watcher.Created += fsChangeHandler;
+                    _watcher.Changed += fsChangeHandler;
+                    _watcher.Renamed += fsChangeHandler;
+                    _watcher.Filter = "*.*";
+                    _watcher.EnableRaisingEvents = true;
+                }
+            }
+        }
+
+        void fsChangeHandler(object sender, FileSystemEventArgs e)
+        {
+            try
+            {
+                _watcher.EnableRaisingEvents = false;
+
+                if (e != null && e.FullPath == Image2)
+                {
+                    OnFsEvent(Image2);
+                }
+            }
+            finally
+            {
+                _watcher.EnableRaisingEvents = true;
+            }
+        }
+
+        public void OnFsEvent(string Path)
+        {
+            if (File.Exists(Path))
+            {
+                NotifyPropertyChanged("ImageSource2");
+            }
+        }
+        #endregion
+
+
         public MainWindow()
         {
             DataContext = this;
             InitializeComponent();
+            initWatcher(Image2);
         }
 
 
