@@ -70,6 +70,21 @@ namespace WpfExample
                 row.LabelFor = Name;
                 row.ToolTip = tTip;
 
+                Button bRemove = new Button();
+                bRemove.Height = 20;
+                bRemove.Width = 20;
+                bRemove.Content = "-";
+                bRemove.Click += new RoutedEventHandler((s, e) =>
+                {
+                    try
+                    {
+                        Encoder.RemoveParam(instance);
+                        Console.WriteLine("Param Remove button clicked: " + Name);
+                    }
+                    catch (Exception error) { MessageBox.Show(error.ToString()); }
+                });
+
+
                 if (Array.FindIndex(propertyInfos, x => x.Name == "Value") != -1)
                 {
                     PropertyInfo propertyInfoValue = t.GetProperty("Value");
@@ -101,6 +116,7 @@ namespace WpfExample
 
                         StackPanel sp = new StackPanel();
                         sp.Orientation = Orientation.Horizontal;
+                        sp.Children.Add(bRemove);
                         sp.Children.Add(b);
                         sp.Children.Add(tBox);
                         row.Content = sp;
@@ -133,6 +149,7 @@ namespace WpfExample
 
                         StackPanel sp = new StackPanel();
                         sp.Orientation = Orientation.Horizontal;
+                        sp.Children.Add(bRemove);
                         sp.Children.Add(b);
                         sp.Children.Add(tBox);
                         row.Content = sp;
@@ -163,6 +180,7 @@ namespace WpfExample
 
                         StackPanel sp = new StackPanel();
                         sp.Orientation = Orientation.Horizontal;
+                        sp.Children.Add(bRemove);
                         sp.Children.Add(b);
                         sp.Children.Add(tBox);
                         row.Content = sp;
@@ -200,6 +218,7 @@ namespace WpfExample
 
                         StackPanel sp = new StackPanel();
                         sp.Orientation = Orientation.Horizontal;
+                        sp.Children.Add(bRemove);
                         sp.Children.Add(b);
                         sp.Children.Add(tBox);
                         row.Content = sp;
@@ -236,6 +255,7 @@ namespace WpfExample
 
                         StackPanel sp = new StackPanel();
                         sp.Orientation = Orientation.Horizontal;
+                        sp.Children.Add(bRemove);
                         sp.Children.Add(b);
                         sp.Children.Add(tBox);
                         row.Content = sp;
@@ -272,6 +292,7 @@ namespace WpfExample
 
                         StackPanel sp = new StackPanel();
                         sp.Orientation = Orientation.Horizontal;
+                        sp.Children.Add(bRemove);
                         sp.Children.Add(b);
                         sp.Children.Add(tBox);
                         row.Content = sp;
@@ -307,6 +328,7 @@ namespace WpfExample
 
                         StackPanel sp = new StackPanel();
                         sp.Orientation = Orientation.Horizontal;
+                        sp.Children.Add(bRemove);
                         sp.Children.Add(b);
                         sp.Children.Add(tBox);
                         row.Content = sp;
@@ -344,6 +366,7 @@ namespace WpfExample
 
                     StackPanel sp = new StackPanel();
                     sp.Orientation = Orientation.Horizontal;
+                    sp.Children.Add(bRemove);
                     sp.Children.Add(b);
                     sp.Children.Add(cBox);
                     row.Content = sp;

@@ -125,8 +125,8 @@
             <DockPanel LastChildFill="True" Margin="4,4,4,4">
                 <!--<Button DockPanel.Dock="Left" Name="btnEncode" Content="Encode" Width="60" Height="40" Click="btnEncode_Click" Background="LimeGreen"/>-->
                 <Button DockPanel.Dock="Left" Name="btnEncode" Content="Encode" Width="60" Height="40" Click="btnEncodeAsync_Click" Background="LimeGreen"/>
-                <Button DockPanel.Dock="Left" Name="btnSave" Content="Save Preset" Width="80" Height="40" Click="btnSave_Click" Background="AliceBlue" ToolTip="Save Preset to File"/>
-                <Button DockPanel.Dock="Left" Name="btnLoad" Content="Load Preset" Width="80" Height="40" Click="btnLoad_Click" Background="AliceBlue" ToolTip="Load Preset from File"/>
+                <Button DockPanel.Dock="Left" Name="btnSave" Content="Save Preset" Width="80" Height="40" Click="btnSave_Click" ToolTip="Save Preset to File"/>
+                <Button DockPanel.Dock="Left" Name="btnLoad" Content="Load Preset" Width="80" Height="40" Click="btnLoad_Click" ToolTip="Load Preset from File"/>
                 <TextBox Height="40" Name="txtBoxStatus" VerticalContentAlignment="Center"></TextBox>
             </DockPanel>
 
@@ -145,7 +145,7 @@
             
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <DockPanel Grid.Column="0" LastChildFill="True">
@@ -178,7 +178,7 @@
 
             <DockPanel Grid.Column="1" Grid.RowSpan="2" LastChildFill="True">
                 <Label DockPanel.Dock="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" Background="LightGray">Available Parameter</Label>
-                <ListBox  Name="LbParam" HorizontalContentAlignment="Stretch" Background="AliceBlue">
+                <ListBox  Name="LbParam" HorizontalContentAlignment="Left" >
                     <ListBox.Resources>
                         <Style TargetType="{x:Type TextBox}">
                             <Setter Property="HorizontalAlignment" Value="Stretch"/>
