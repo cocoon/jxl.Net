@@ -1,0 +1,43 @@
+﻿<Window x:Class="jxlViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:jxlViewer"
+        mc:Ignorable="d"
+        Title="jxlViewer" Height="450" Width="800">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Vertical">
+            <DockPanel LastChildFill="True">
+                <Label>Image1: </Label>
+                <Button Name="BtnImage1" Content="..." Width="40" Click="BtnImage1_Click"/>
+                <TextBox Name="image1" Text="{Binding Image1}"/>
+            </DockPanel>
+
+            <DockPanel LastChildFill="True">
+                <Label>Image2:</Label>
+                <Button Name="BtnImage2" Content="..." Width="40" Click="BtnImage2_Click"/>
+                <TextBox Name="image2" Text="{Binding Image2}"/>
+            </DockPanel>
+        </StackPanel>
+        
+        <Grid Grid.Row="1" HorizontalAlignment="Center" >
+            <Image x:Name="ImageBefore" HorizontalAlignment="Left" Source="{Binding ImageSource1}" />
+
+            <Rectangle HorizontalAlignment="Left" Width="{Binding Value, ElementName=Slider}" Height="{Binding ActualHeight, ElementName=ImageBefore}" >
+                <Rectangle.Fill>
+                    <ImageBrush x:Name="ImageAfter" Stretch="UniformToFill" AlignmentX="Left" AlignmentY="Top" ImageSource="{Binding ImageSource2, Mode=OneWay}" />
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <Slider x:Name="Slider" Maximum="{Binding ActualWidth, ElementName=ImageBefore}" Width="{Binding ActualWidth, ElementName=ImageBefore}" VerticalAlignment="Bottom" Margin="0,0,0,40" Value="100" />
+        </Grid>
+    </Grid>
+
+</Window>

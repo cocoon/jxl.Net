@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8C16D955-F4F5-4A2C-B16F-5F86C2EC5F29}</ProjectGuid>
+    <ProjectGuid>{BD7A4274-6EA2-496A-B381-BE698905379E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WpfExample</RootNamespace>
-    <AssemblyName>WpfExample</AssemblyName>
+    <RootNamespace>jxlViewer</RootNamespace>
+    <AssemblyName>jxlViewer</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -57,6 +58,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -83,8 +85,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EditRow.cs" />
-    <Compile Include="ListBoxParameter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -117,21 +117,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\jxl.net\jxlNET.csproj">
-      <Project>{d6eb35da-9bf2-486b-8ff7-4bbce622eace}</Project>
-      <Name>jxlNET</Name>
-    </ProjectReference>
+    <PackageReference Include="Magick.NET-Q16-HDRI-OpenMP-x64">
+      <Version>7.23.3</Version>
+    </PackageReference>
+    <PackageReference Include="Magick.NET.SystemDrawing">
+      <Version>2.0.14</Version>
+    </PackageReference>
+    <PackageReference Include="Magick.NET.SystemWindowsMedia">
+      <Version>3.0.8</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="example\160011_architecture-air-conditioner-building.jpg">
+    <None Include="b500_q1.jxl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="example\160011_architecture-air-conditioner-building_License.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Out\" />
+    <None Include="b500.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
