@@ -20,7 +20,7 @@ EncoderOptions encOptions = new EncoderOptions
 };
 ```
 
-Current version used was v0.3.2.
+Current version used was v0.3.4 (v0.3.5 broken).
 
 
 # WPF GUI Example 
