@@ -26,7 +26,7 @@ Current version used was v0.3.2.
 # WPF GUI Example 
 An example project is available that is using jxl.Net
 
-![jxl NET-WPF-GUI_2021-03-22](https://user-images.githubusercontent.com/1071741/112019531-d0ef4e80-8b2f-11eb-886c-f7ffd68865a5.jpg)
+![2021-03-27_WPF_UI_with_ImageComparison_DarkMode](https://user-images.githubusercontent.com/1071741/112734453-25d30080-8f46-11eb-8c63-689ad52f1707.png)
 
 ## jxlViewer with slider to compare images
 
