@@ -16,6 +16,12 @@ using System.IO;
 using Microsoft.Win32;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Media.Imaging;
+using ImageMagick;
+using System.Collections.Generic;
+using System.Windows.Media;
+using jxlNET.Decoder;
+using System.Linq;
 
 namespace WpfExample
 {
@@ -32,7 +38,9 @@ namespace WpfExample
         }
         #endregion
 
+        #region Vars
 
+        public static string BaseDir = AppDomain.CurrentDomain.BaseDirectory;
         const string exampleFileName = "160011_architecture-air-conditioner-building.jpg";
         static string exampleDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "example");
         static string example = Path.Combine(exampleDir, exampleFileName);
@@ -41,12 +49,178 @@ namespace WpfExample
         public Encoder Enc
         {
             get { return enc; }
-            set { enc = value; NotifyPropertyChanged(); }
+            set
+            {
+                enc = value; NotifyPropertyChanged();
+                if (value.OutFile != null) initWatcher(value.OutFile.FullName);
+            }
+        }
+
+
+        #region Presets
+
+        private string PresetsDirectory = Path.Combine(BaseDir, "Presets");
+
+        private List<FileInfo> _loadedPresets = new List<FileInfo>();
+        public List<FileInfo> LoadedPresets
+        {
+            get { return _loadedPresets; }
+            set { _loadedPresets = value; NotifyPropertyChanged(); }
+        }
+        #endregion
+
+        #region Images
+        private BitmapSource redImage()
+        {
+            int width = 128;
+            int height = width;
+            int stride = width / 8;
+            byte[] pixels = new byte[height * stride];
+
+            List<System.Windows.Media.Color> colors = new List<System.Windows.Media.Color>();
+            colors.Add(System.Windows.Media.Colors.Red);
+            BitmapPalette tempPalette = new BitmapPalette(colors);
+
+            BitmapSource image = BitmapSource.Create(
+                width,
+                height,
+                96,
+                96,
+                PixelFormats.Indexed1,
+                tempPalette,
+                pixels,
+                stride);
+
+            return image;
         }
 
 
 
+        public string Image1
+        {
+            get
+            {
+                if (Enc != null && Enc.InFile != null) return Enc.InFile.FullName;
+                else return string.Empty;
+            }
+        }
 
+        private BitmapSource _imageSource1;
+
+        public BitmapSource ImageSource1
+        {
+            get
+            {
+                if (File.Exists(Image1))
+                {
+                    using (var image = new MagickImage(Image1))
+                    {
+                        return image.ToBitmapSource();
+                    }
+                }
+                else
+                {
+                    return redImage();
+                }
+            }
+        }
+
+
+        public string Image2
+        {
+            get {
+                if (Enc != null && Enc.OutFile != null) return Enc.OutFile.FullName;
+                else return string.Empty;
+            }
+        }
+
+
+        private BitmapSource _imageSource2;
+
+        public BitmapSource ImageSource2
+        {
+            get
+            {
+                if (File.Exists(Image2))
+                {
+                    using (var image = new MagickImage(Image2))
+                    {
+                        return image.ToBitmapSource();
+                    }
+                }
+                else
+                {
+                    return redImage();
+                }
+            }
+        }
+        #endregion
+
+        #endregion
+
+        #region FileSystemWatcher
+        private FileSystemWatcher _watcher = new FileSystemWatcher();
+
+        private void initWatcher(string Path)
+        {
+            if (!string.IsNullOrEmpty(Path))
+            {
+                if (_watcher != null)
+                {
+                    _watcher.EnableRaisingEvents = false;
+
+                    var dir = new FileInfo(Path).Directory.FullName;
+                    if (Directory.Exists(dir))
+                    {
+                        Console.WriteLine("FileSystemWatcher(dir) " + dir);
+
+                        _watcher = new FileSystemWatcher(dir);
+                        _watcher.IncludeSubdirectories = false;
+                        _watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName | NotifyFilters.Size;
+                        _watcher.Created += fsChangeHandler;
+                        _watcher.Changed += fsChangeHandler;
+                        _watcher.Renamed += fsChangeHandler;
+                        _watcher.Filter = "*.*";
+                        _watcher.EnableRaisingEvents = true;
+                    }
+                }
+            }
+        }
+
+        void fsChangeHandler(object sender, FileSystemEventArgs e)
+        {
+            try
+            {
+                _watcher.EnableRaisingEvents = false;
+
+                if (e != null && e.FullPath == Image2)
+                {
+                    OnFsEvent(Image2);
+                }
+            }
+            finally
+            {
+                _watcher.EnableRaisingEvents = true;
+            }
+        }
+
+        public void OnFsEvent(string Path)
+        {
+            if (File.Exists(Path))
+            {
+                NotifyPropertyChanged("ImageSource2");
+            }
+        }
+        #endregion
+
+
+
+
+
+
+        /// <summary>
+        /// MAIN
+        /// </summary>
 
         public MainWindow()
         {
@@ -57,21 +231,40 @@ namespace WpfExample
             Init();
         }
 
+
+
+
+
+
         private void Init()
         {
             // Create Options for the encoder and activate validation
             EncoderOptions encOptions = new EncoderOptions
             {
-                EncoderPath = @"c:\dev\jxl\cjxl.exe",
-                Validate = true
+                EncoderPath = Path.Combine(BaseDir, "cjxl.exe"),
+                Validate = false
             };
 
             // Create new encoder with previously prepared Options
             Enc = new Encoder(encOptions);
 
+            // Create Options for the encoder and activate validation
+            DecoderOptions decOptions = new DecoderOptions
+            {
+                DecoderPath = Path.Combine(BaseDir, "djxl.exe"),
+            };
+
+
             //Try to get versions
             encOptions.TryGetEncoderVersionInfo();
             enc.Decoder.Options.TryGetDecoderVersionInfo();
+
+            // listen to propertychange events of the encoder to get notified
+            // if the images changes to update the FileSystem watcher
+            // and it updates the image in the viewer component
+            enc.PropertyChanged += enc_PropertyChanged;
+
+            initWatcher(Image2);
 
 
             // Set example image as input file
@@ -88,7 +281,6 @@ namespace WpfExample
             Console.WriteLine("Encode with Quality: " + q.Value);
             Enc.AddOrReplaceParam(q);
 
-
             // Configure Speed
             jxlNET.Encoder.Parameters.Speed s = new jxlNET.Encoder.Parameters.Speed(3);
             Enc.AddOrReplaceParam(s);
@@ -99,10 +291,81 @@ namespace WpfExample
                 Console.WriteLine("param: " + p.ToString());
             }
 
+            //Load saved Presets from files
+            LoadPresets();
+
             // Dynamically build controls to add parameter
             ListBoxParameter.FillListBox(LbParam, enc);
         }
 
+
+
+        private void LoadPresets()
+        {
+            if (!Directory.Exists(PresetsDirectory))
+            {
+                try
+                {
+                    Directory.CreateDirectory(PresetsDirectory);
+                }
+                catch (Exception ex)
+                {
+                    string m = "Presets Directory could not be created: " + PresetsDirectory;
+                    MessageBox.Show(m);
+                }
+            }
+            if (Directory.Exists(PresetsDirectory))
+            {
+                try
+                {
+                    var presets = Directory.EnumerateFiles(PresetsDirectory, "*.preset");
+                    if (presets != null && presets.Count() > 0)
+                    {
+                        LoadedPresets.Clear();
+
+                        foreach (var p in presets)
+                        {
+                            LoadedPresets.Add(new FileInfo(p));
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string m = "Presets Directory could not be created: " + PresetsDirectory;
+                    MessageBox.Show(m);
+                }
+            }
+        }
+
+
+        void enc_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case "InFile":
+                    NotifyPropertyChanged("ImageSource1");
+                    break;
+                case "OutFile":
+                    initWatcher(enc.OutFile.FullName);
+                    break;
+            }
+        }
+
+        #region Theme
+        void ApplyTheme(bool Clear)
+        {
+            Application.Current.Resources.MergedDictionaries.Clear();
+            if (!Clear) Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("DarkTheme.xaml", UriKind.Relative) });
+        }
+
+        private void ChkDarkMode_CheckedChanged(object sender, RoutedEventArgs e)
+        {
+            if (ChkDarkMode.IsChecked == true) ApplyTheme(false);
+            else ApplyTheme(true);
+        }
+        #endregion
+
+        #region Button Clicks
 
         private void BtnInput_Click(object sender, RoutedEventArgs e)
         {
@@ -145,7 +408,14 @@ namespace WpfExample
         {
             try
             {
-                jxlNET.Presets.Save("Test.preset", Enc.Params);
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.InitialDirectory = PresetsDirectory;
+                saveFileDialog.Filter = "Preset file (*.preset)|*.preset|All files (*.*)|*.*";
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    jxlNET.Presets.Save(saveFileDialog.FileName, Enc.Params);
+                    LoadPresets();
+                }
             }
             catch (Exception error) { Console.WriteLine(error.ToString()); }
         }
@@ -154,16 +424,149 @@ namespace WpfExample
         {
             try
             {
-                if (File.Exists("Test.preset"))
+                FileInfo preset = (FileInfo)Presets.SelectedItem;
+
+                if (preset != null)
                 {
-                    var param = jxlNET.Presets.Load("Test.preset");
-                    if (param != null)
+                    if (File.Exists(preset.FullName))
                     {
-                        Enc.Params = param;
+                        var param = jxlNET.Presets.Load(preset.FullName);
+                        if (param != null)
+                        {
+                            //Enc.Params = param;
+                            Enc.Params.Clear();
+                            if(param.Count > 0)
+                            {
+                                foreach (var p in param)
+                                {
+                                    Enc.AddOrReplaceParam(p);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Preset not found: " + preset);
                     }
                 }
             }
             catch (Exception error) { Console.WriteLine(error.ToString()); }
         }
+
+        private void BtnEncoder_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "JPEG-XL Encoder (cjxl.exe)|cjxl.exe|All files (*.*)|*.*";
+            openFileDialog.InitialDirectory = BaseDir;
+
+            openFileDialog.Multiselect = false;
+            if (openFileDialog.ShowDialog() == true)
+            {
+                if (Enc != null) Enc.Options.EncoderPath = openFileDialog.FileName;
+                Enc.Options.TryGetEncoderVersionInfo();
+            }
+        }
+
+        private void BtnDecoder_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "JPEG-XL Decoder (djxl.exe)|djxl.exe|All files (*.*)|*.*";
+            openFileDialog.InitialDirectory = BaseDir;
+
+            openFileDialog.Multiselect = false;
+            if (openFileDialog.ShowDialog() == true)
+            {
+                if (Enc != null) Enc.Options.EncoderPath = openFileDialog.FileName;
+                Enc.Decoder.Options.TryGetDecoderVersionInfo();
+            }
+        }
+
+        #endregion
+
+
+        #region DragnDrop
+
+        private void Drop_Input(object sender, DragEventArgs e)
+        {
+            HandleDrop(e, "Input");
+        }
+
+        private void Drop_Output(object sender, DragEventArgs e)
+        {
+            HandleDrop(e, "Output");
+        }
+
+        public void HandleDrop(DragEventArgs e, string Code)
+        {
+            DragDropEffects effects = DragDropEffects.None;
+
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] fileDrops = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                //if (fileDrops != null && fileDrops.Length == 1)
+                if (fileDrops != null && fileDrops.Length > 0)
+                {
+                    foreach (var fileDrop in fileDrops)
+                    {
+                        FileInfo fInfo = new FileInfo(fileDrop);
+
+                        if (File.Exists(fInfo.FullName))
+                        {
+                            if (Code == "Input")
+                            {
+                                if (Encoder.AllowedExtensions.Contains(fInfo.Extension))
+                                {
+                                    Enc.InFile = fInfo;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Extension not allowed: " + fInfo.Extension);
+                                }
+                            }
+                            if (Code == "Output") Enc.OutFile = fInfo;
+
+                        }
+                        else if (Directory.Exists(fileDrop))
+                        {
+                            HandleFolderDrop(fileDrop);
+                        }
+                    }
+                }
+                else if (fileDrops != null && fileDrops.Length > 1)
+                {
+                    foreach (var fileDrop in fileDrops)
+                    {
+                        //handle multiple images
+                    }
+                }
+
+            }
+        }
+
+
+        void HandleFolderDrop(string path)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void txtBoxInput_PreviewDragOver(object sender, DragEventArgs e)
+        {
+            //needed to enable drag drop for other types besides strings
+            e.Handled = true;
+        }
+
+        private void txtBoxOutput_PreviewDragOver(object sender, DragEventArgs e)
+        {
+            //needed to enable drag drop for other types besides strings
+            e.Handled = true;
+        }
+
+
+        #endregion
+
+
     }
 }

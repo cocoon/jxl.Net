@@ -18,13 +18,99 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfExample"
         mc:Ignorable="d"
-        Title="JPEG-XL WPF Example UI" Height="850" Width="900">
+        
+        Title="JPEG-XL WPF Example UI" Height="900" Width="1600">
 
+    <Window.Resources>
+
+        <Style x:Key="SliderRepeatButton" TargetType="RepeatButton">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="IsTabStop" Value="false" />
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border  BorderThickness="1" BorderBrush="YellowGreen" Background="YellowGreen" Height="3" Opacity="0.2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SliderRepeatButton1" TargetType="RepeatButton">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border SnapsToDevicePixels="True" Background="YellowGreen"  BorderThickness="1" BorderBrush="YellowGreen" Height="3" Opacity="0.2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SliderThumb" TargetType="Thumb">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+                        <Grid>
+                            <Rectangle Height="40" Width="40" Fill="red" Opacity="0.2"/>
+                            <Rectangle Height="{Binding Height, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Slider}}}" Width="6" Fill="red" Opacity="0.2"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="Slider"  TargetType="Slider">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Track Grid.Row="1" x:Name="PART_Track"   >
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton1}"  Command="Slider.DecreaseLarge" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource SliderThumb}"  />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton}" Command="Slider.IncreaseLarge" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+
+        <Style x:Key="Horizontal_Slider" TargetType="Slider">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="MinHeight" Value="21" />
+                    <Setter Property="MinWidth" Value="104" />
+                    <Setter Property="Template" Value="{StaticResource Slider}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="184"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         
         <Grid.Resources>
             <Style TargetType="{x:Type ListBoxItem}">
@@ -49,11 +135,11 @@
         </Grid.Resources>
 
 
-        <StackPanel Grid.Row="0" Orientation="Vertical">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
 
             <DockPanel LastChildFill="False" Background="DarkGray" Margin="0,0,0,4">
 
-                <Label>Encoder:</Label>
+                <Button Name="BtnEncoder" Click="BtnEncoder_Click">Encoder:</Button>
 
                 <TextBox ToolTip="{Binding Enc.Options.EncoderPath}" IsReadOnly="True" VerticalContentAlignment="Center">
                     <TextBox.Style>
@@ -79,7 +165,7 @@
 
 
 
-                <Label>Decoder:</Label>
+                <Button Name="BtnDecoder" Click="BtnDecoder_Click">Decoder:</Button>
                 
                 <!--<TextBox Text="{Binding Enc.Decoder.Options.DecoderPath}" IsReadOnly="True" ToolTip="{Binding Enc.Decoder.Options.DecoderPath}"/>-->
 
@@ -105,19 +191,22 @@
                 <Label>Decoder Version:</Label>
                 <TextBox ToolTip="{Binding Enc.Decoder.Options.DecoderVersion, Mode=OneWay}" Text="{Binding Enc.Decoder.Options.DecoderVersion, Mode=OneWay}" IsReadOnly="True" VerticalContentAlignment="Center"/>
 
+
+                <Label>Darkmode:</Label>
+                <CheckBox Name="ChkDarkMode" VerticalAlignment="Center" Checked="ChkDarkMode_CheckedChanged" Unchecked="ChkDarkMode_CheckedChanged"/>
             </DockPanel>
-            
-            <DockPanel LastChildFill="True">
+
+            <DockPanel LastChildFill="True" AllowDrop="True" Drop="Drop_Input">
                 <Label Name="lblInput" Width="100" FontWeight="Bold">Input File:</Label>
                 <Button Name="BtnInput" Content="..." Width="40" Click="BtnInput_Click"/>
-                <TextBox Name="txtBoxInput" Text="{Binding Enc.InFilePath}" ToolTip="{Binding Enc.InFilePath}" VerticalContentAlignment="Center"/>
+                <TextBox Name="txtBoxInput" Text="{Binding Enc.InFilePath}" ToolTip="{Binding Enc.InFilePath}" VerticalContentAlignment="Center" PreviewDragOver="txtBoxInput_PreviewDragOver" />
             </DockPanel>
 
 
-            <DockPanel LastChildFill="True">
+            <DockPanel LastChildFill="True" AllowDrop="True" Drop="Drop_Output">
                 <Label Name="lblOutput" Width="100" FontWeight="Bold">Output File:</Label>
                 <Button Name="BtnOutput" Content="..." Width="40"/>
-                <TextBox Name="txtBoxOutput" Text="{Binding Enc.OutFilePath}" ToolTip="{Binding Enc.OutFilePath}" VerticalContentAlignment="Center"/>
+                <TextBox Name="txtBoxOutput" Text="{Binding Enc.OutFilePath}" ToolTip="{Binding Enc.OutFilePath}" VerticalContentAlignment="Center" PreviewDragOver="txtBoxOutput_PreviewDragOver"/>
             </DockPanel>
             
             
@@ -125,8 +214,13 @@
             <DockPanel LastChildFill="True" Margin="4,4,4,4">
                 <!--<Button DockPanel.Dock="Left" Name="btnEncode" Content="Encode" Width="60" Height="40" Click="btnEncode_Click" Background="LimeGreen"/>-->
                 <Button DockPanel.Dock="Left" Name="btnEncode" Content="Encode" Width="60" Height="40" Click="btnEncodeAsync_Click" Background="LimeGreen"/>
+
+                <!-- Presets -->
                 <Button DockPanel.Dock="Left" Name="btnSave" Content="Save Preset" Width="80" Height="40" Click="btnSave_Click" ToolTip="Save Preset to File"/>
                 <Button DockPanel.Dock="Left" Name="btnLoad" Content="Load Preset" Width="80" Height="40" Click="btnLoad_Click" ToolTip="Load Preset from File"/>
+                <Label VerticalAlignment="Center">Preset: </Label>
+                <ComboBox Name="Presets" ItemsSource="{Binding LoadedPresets}" DisplayMemberPath="Name" Width="200" VerticalAlignment="Center"/>
+                
                 <TextBox Height="40" Name="txtBoxStatus" VerticalContentAlignment="Center"></TextBox>
             </DockPanel>
 
@@ -151,7 +245,7 @@
             <DockPanel Grid.Column="0" LastChildFill="True">
                 <Label Name="lblProcessText" DockPanel.Dock="Top" FontWeight="Bold" HorizontalContentAlignment="Center" Background="LightGray">Process Text</Label>
 
-                <TextBox Background="Transparent" Name="txtBlockProcessText" FontFamily="Lucida Console" BorderThickness="0" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <TextBox Background="Transparent" Name="txtBlockProcessText" FontFamily="Lucida Console" BorderThickness="0" IsReadOnly="False" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                     <TextBox.Text>
                         <MultiBinding StringFormat="{}### ENCODER ###&#x0d;&#x0a;{0}&#x0d;&#x0a;### DECODER ###&#x0d;&#x0a;{1}" Mode="OneWay">
                             <Binding Path="Enc.ProcessText.Text" />
@@ -191,7 +285,7 @@
             <DockPanel Grid.Column="0" Grid.Row="1" LastChildFill="True">
                 <Label Name="lblEncoderMessages" HorizontalContentAlignment="Center" Background="LightGray" DockPanel.Dock="Top" FontWeight="Bold">Encoder / Decoder Messages</Label>
 
-                <TextBox Background="Transparent" Name="txtBoxEncoderMessages" FontFamily="Lucida Console" BorderThickness="0" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <TextBox Background="Transparent" Name="txtBoxEncoderMessages" FontFamily="Lucida Console" BorderThickness="0" IsReadOnly="False" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                     <TextBox.Text>
                         <MultiBinding StringFormat="{}### ENCODER ###&#x0d;&#x0a;{0}&#x0d;&#x0a;### DECODER ###&#x0d;&#x0a;{1}" Mode="OneWay">
                             <Binding Path="Enc.Messages.Text" />
@@ -203,6 +297,28 @@
 
         </Grid>
 
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid HorizontalAlignment="Center" >
+                <Image x:Name="ImageBefore" HorizontalAlignment="Left" Source="{Binding ImageSource1}"/>
+
+
+                <Rectangle HorizontalAlignment="Left" Width="{Binding Value, ElementName=Slider}" Height="{Binding ActualHeight, ElementName=ImageBefore}">
+                    <Rectangle.Fill>
+                        <ImageBrush x:Name="ImageAfter" Stretch="UniformToFill" AlignmentX="Left" AlignmentY="Top" ImageSource="{Binding ImageSource2, Mode=OneWay}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <Slider x:Name="Slider" Style="{StaticResource Horizontal_Slider}" Maximum="{Binding ActualWidth, ElementName=ImageBefore}" Width="{Binding ActualWidth, ElementName=ImageBefore}" Height="{Binding ActualHeight, ElementName=ImageBefore}" VerticalAlignment="Center" Value="100" />
+            </Grid>
+        </Grid>
+
+
+
     </Grid>
 
+    
+    
+    
+    
 </Window>
