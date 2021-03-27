@@ -10,9 +10,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -25,7 +23,7 @@ namespace jxlNET.Encoder.Parameters
     /// 1.0 = visually lossless. Default for other input.
     /// Recommended range: 0.5 .. 3.0.
     /// </summary>
-
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Distance : jxlNET.Parameter
     {
         public override string Description => "d, distance, maxError, Max. butteraugli distance, lower = higher quality. Range: 0 .. 15. 0.0 = mathematically lossless. Default for already-lossy input (JPEG/GIF). 1.0 = visually lossless. Default for other input. Recommended range: 0.5 .. 3.0.";

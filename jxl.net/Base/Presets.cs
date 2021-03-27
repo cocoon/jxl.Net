@@ -21,6 +21,22 @@ namespace jxlNET
                 serializer.Serialize(writer, Parameter);
                 writer.Close();
             }
+            catch (Exception error)
+            {
+                Console.WriteLine("Error saving Preset: " + FileName + Environment.NewLine + error.ToString());
+            }
+        }
+
+        public static void Save(string FileName, List<Parameter> Parameter, string NameSpace)
+        {
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Parameter>), NameSpace);
+                TextWriter writer = new StreamWriter(FileName);
+
+                serializer.Serialize(writer, Parameter);
+                writer.Close();
+            }
             catch(Exception error)
             {
                 Console.WriteLine("Error saving Preset: " + FileName + Environment.NewLine + error.ToString());
@@ -54,13 +70,48 @@ namespace jxlNET
                     Console.WriteLine("Param: " + p.ToString() + " Type: " + p.GetType());
                 }
             }
-            catch(Exception error)
+            catch (Exception error)
             {
                 Console.WriteLine("Error loading Preset: " + FileName + Environment.NewLine + error.ToString());
             }
 
             return result;
+        }
+
+        public static List<Parameter> Load(string FileName, string NameSpace)
+        {
+            List<Parameter> result = new List<Parameter>();
+
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Parameter>), NameSpace);
+                /* If the XML document has been altered with unknown
+                nodes or attributes, handle them with the
+                UnknownNode and UnknownAttribute events.*/
+                serializer.UnknownNode += new XmlNodeEventHandler(serializer_UnknownNode);
+                serializer.UnknownAttribute += new XmlAttributeEventHandler(serializer_UnknownAttribute);
+
+                FileStream fs = new FileStream(FileName, FileMode.Open);
+
+                List<Parameter> loadedData;
+
+                loadedData = (List<Parameter>)serializer.Deserialize(fs);
+
+                if (loadedData != null) result = loadedData;
+
+                foreach (var p in loadedData)
+                {
+                    Console.WriteLine("Param: " + p.ToString() + " Type: " + p.GetType());
+                }
             }
+            catch (Exception error)
+            {
+                Console.WriteLine("Error loading Preset: " + FileName + Environment.NewLine + error.ToString());
+            }
+
+            return result;
+        }
+            
 
         private static void serializer_UnknownNode (object sender, XmlNodeEventArgs e)
         {

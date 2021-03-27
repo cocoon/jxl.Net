@@ -10,9 +10,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -20,6 +18,7 @@ namespace jxlNET.Encoder.Parameters
     /// <summary>
     /// "target_bpp", "BPP", ("Aim at file size that has N bits per pixel.\n"   "    Compresses to 1 % of the target BPP in ideal conditions."
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class TargetBPP : jxlNET.Parameter
     {
         public override string Description => "target_bpp, BPP, (Aim at file size that has N bits per pixel.\nCompresses to 1 % of the target BPP in ideal conditions.";

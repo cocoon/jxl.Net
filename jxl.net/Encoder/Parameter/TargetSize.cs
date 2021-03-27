@@ -10,9 +10,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -20,6 +18,7 @@ namespace jxlNET.Encoder.Parameters
     /// <summary>
     /// "target_size", "N", ("Aim at file size of N bytes.\n" "    Compresses to 1 % of the target size in ideal conditions.\n" "    Runs the same algorithm as --target_bpp"
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class TargetSize : jxlNET.Parameter
     {
         public override string Description => "target_size, N, (Aim at file size of N bytes.\nCompresses to 1 % of the target size in ideal conditions.\nRuns the same algorithm as --target_bpp";

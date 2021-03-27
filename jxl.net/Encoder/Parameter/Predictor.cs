@@ -10,9 +10,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -26,6 +24,7 @@ namespace jxlNET.Encoder.Parameters
     /// 14=mix 5 and 6, 15=mix everything. Default 14, at slowest speed 
     /// default 15
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Predictor : jxlNET.Parameter
     {
         public override string Description => "P, predictor, K, [modular encoding]\npredictor(s) to use:\n0=zero, 1=left, 2=top, 3=avg0, 4=select, 5=gradient, 6=weighted, 7=topright, 8=topleft, 9=leftleft, 10=avg1, 11=avg2, 12=avg3, \n13=toptop predictive average 14=mix 5 and 6, 15=mix everything.\nDefault 14, at slowest speed default 15";

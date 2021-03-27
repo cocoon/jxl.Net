@@ -10,16 +10,14 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Text;
-
+using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
 {
     /// <summary>
     /// "saliency_map_filename", "STRING"
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class SaliencyMapFilename : jxlNET.Parameter
     {
         public override string Description => "saliency_map_filename, STRING";

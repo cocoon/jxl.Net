@@ -9,11 +9,7 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Text;
-
+using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
 {
@@ -21,6 +17,7 @@ namespace jxlNET.Encoder.Parameters
     /// <summary>
     /// "strip","Do not encode using container format (strips Exif/XMP/JPEG bitstream reconstruction data)"
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Strip : jxlNET.Parameter
     {
         public override string Description => "strip, Do not encode using container format (strips Exif/XMP/JPEG bitstream reconstruction data)";

@@ -13,14 +13,15 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Text;
+using System.Xml.Serialization;
 
-
-namespace jxlNET.Deccoder.Parameters
+namespace jxlNET.Decoder.Parameters
 {
 
     /// <summary>
     /// 'V', "version", "print version number and exit
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class Version : jxlNET.Parameter
     {
         public override string Description => "V, version, print version number and exit";

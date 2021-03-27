@@ -9,11 +9,7 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Text;
-
+using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
 {
@@ -21,6 +17,7 @@ namespace jxlNET.Encoder.Parameters
     /// <summary>
     /// "use_new_heuristics", "use new and not yet ready encoder heuristics"
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class UseNewHeuristics : jxlNET.Parameter
     {
         public override string Description => "use_new_heuristics, use new and not yet ready encoder heuristics";

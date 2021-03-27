@@ -127,8 +127,9 @@ namespace jxlNET.Encoder
         {
             get { return _inFilePath; }
             set 
-            { 
-                _inFilePath = value; NotifyPropertyChanged(); 
+            {
+                string relPath = PathNetCore.GetRelativePath(new FileInfo(Options.EncoderPath).DirectoryName, value);
+                _inFilePath = relPath; NotifyPropertyChanged(); 
                 _inFile = new FileInfo(value); NotifyPropertyChanged("InFile"); 
                 generateOutFilePath();
                 EncoderArgumentBuilder();
@@ -140,8 +141,9 @@ namespace jxlNET.Encoder
         {
             get { return _outFilePath; }
             set 
-            { 
-                _outFilePath = value; NotifyPropertyChanged(); 
+            {
+                string relPath = PathNetCore.GetRelativePath(new FileInfo(Options.EncoderPath).DirectoryName, value);
+                _outFilePath = relPath; NotifyPropertyChanged(); 
                 _outFile = new FileInfo(value); NotifyPropertyChanged("OutFile");
                 EncoderArgumentBuilder();
             }
@@ -159,9 +161,10 @@ namespace jxlNET.Encoder
         {
             get { return _inFile; }
             set 
-            { 
+            {
+                string relPath = PathNetCore.GetRelativePath(new FileInfo(Options.EncoderPath).DirectoryName, value.FullName);
                 _inFile = value; NotifyPropertyChanged(); 
-                _inFilePath = value.FullName; NotifyPropertyChanged("InFilePath");
+                _inFilePath = relPath; NotifyPropertyChanged("InFilePath");
                 generateOutFilePath();
                 EncoderArgumentBuilder();
             }
@@ -172,9 +175,10 @@ namespace jxlNET.Encoder
         {
             get { return _outFile; }
             set 
-            { 
+            {
+                string relPath = PathNetCore.GetRelativePath(new FileInfo(Options.EncoderPath).DirectoryName, value.FullName);
                 _outFile = value; NotifyPropertyChanged(); 
-                _outFilePath = value.FullName; NotifyPropertyChanged("OutFilePath"); 
+                _outFilePath = relPath; NotifyPropertyChanged("OutFilePath"); 
                 EncoderArgumentBuilder(); 
             }
         }
@@ -257,7 +261,7 @@ namespace jxlNET.Encoder
             if (InFile != null)
             {
                 //Input
-                args.Append("\"" + InFile.FullName + "\"");
+                args.Append("\"" + InFilePath + "\"");
             }
 
             if (OutFile != null)
@@ -265,7 +269,7 @@ namespace jxlNET.Encoder
                 //SPACER
                 args.Append(" ");
                 //Output
-                args.Append("\"" + OutFile.FullName + "\"");
+                args.Append("\"" + OutFilePath + "\"");
             }
 
             if(Params != null && Params.Count > 0)
@@ -280,27 +284,15 @@ namespace jxlNET.Encoder
                 }
             }
 
-
-            /*
-            if (Params.OfType<Quality>().Any())
-            {
-                var param = Params.OfType<Quality>().FirstOrDefault();
-
-                //SPACER
-                args.Append(" ");
-                args.Append(param.Param);
-            }
-            */
-
             CmdLine = args.ToString();
 
             return args.ToString();
         }
 
 
-        public void Encode()
+        public string Encode()
         {
-            encode();
+            return encode();
         }
 
         public void Encode(FileInfo InputFile)
@@ -334,13 +326,15 @@ namespace jxlNET.Encoder
             //Checks
             if (!File.Exists(InFile.FullName))
             {
-                Messages.AppendLine("InputFile not found: " + InFile.FullName);
-                return "error";
+                string m = "InputFile not found: " + InFile.FullName;
+                Messages.AppendLine(m);
+                return "error:  " + m;
             }
             if (!File.Exists(Options.EncoderPath))
             {
-                Messages.AppendLine("Encoder not found: " + Options.EncoderPath);
-                return "error";
+                string m = "Encoder not found: " + Options.EncoderPath;
+                Messages.AppendLine(m);
+                return "error:  " + m;
             }
             if (!Directory.Exists(Options.OutDir))
             {
@@ -352,8 +346,9 @@ namespace jxlNET.Encoder
                 }
                 catch (Exception ex)
                 {
-                    Messages.AppendLine("OutDirectory could not be created: " + Options.OutDir);
-                    return "error";
+                    string m = "OutDirectory could not be created: " + Options.OutDir;
+                    Messages.AppendLine(m);
+                    return "error: " + m;
                 }
             }
 
@@ -375,8 +370,9 @@ namespace jxlNET.Encoder
                     }
                     catch (Exception ex)
                     {
-                        Messages.AppendLine("OutDirectory could not be created: " + OutFile.Directory.FullName);
-                        return "error";
+                        string m = "OutDirectory could not be created: " + OutFile.Directory.FullName;
+                        Messages.AppendLine(m);
+                        return "error: " + m;
                     }
                 }
 

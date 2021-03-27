@@ -10,9 +10,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -20,6 +18,7 @@ namespace jxlNET.Encoder.Parameters
     ///'N', "near-lossless", "max_d",
     /// [modular encoding] apply near-lossless 
     /// preprocessing with maximum delta = max_d
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class NearLossless : jxlNET.Parameter
     {
         public override string Description => "N, near-lossless, max_d, [modular encoding] apply near-lossless preprocessing with maximum delta = max_d";

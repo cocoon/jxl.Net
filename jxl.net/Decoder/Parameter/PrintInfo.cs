@@ -10,16 +10,15 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
-namespace jxlNET.Deccoder.Parameters
+namespace jxlNET.Decoder.Parameters
 {
     /// <summary>
     /// '\0', "print_info", "0|1", print AuxOut before exiting
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class PrintInfo : jxlNET.Parameter
     {
         public override string Description => "\0, print_info, 0|1, print AuxOut before exiting";

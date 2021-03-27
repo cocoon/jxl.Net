@@ -9,10 +9,6 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -20,6 +16,7 @@ namespace jxlNET.Encoder.Parameters
     /// <summary>
     /// "resampling", "1|2|4|8", "Subsample all color channels by this factor"
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Resampling : jxlNET.Parameter
     {
         public override string Description => "resampling, 1|2|4|8, Subsample all color channels by this factor";

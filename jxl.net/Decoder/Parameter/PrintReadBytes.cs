@@ -9,19 +9,15 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
+using System.Xml.Serialization;
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Text;
-
-
-namespace jxlNET.Deccoder.Parameters
+namespace jxlNET.Decoder.Parameters
 {
 
     /// <summary>
     /// '\0', "print_read_bytes", print total number of decoded bytes
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class PrintReadBytes : jxlNET.Parameter
     {
         public override string Description => "\0, print_read_bytes, print total number of decoded bytes";

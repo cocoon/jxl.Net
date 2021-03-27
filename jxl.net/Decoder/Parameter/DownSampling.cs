@@ -10,18 +10,17 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
-namespace jxlNET.Deccoder.Parameters
+namespace jxlNET.Decoder.Parameters
 {
 
     /// <summary>
     /// 's', "downsampling", "1,2,4,8,16", maximum permissible downsampling factor (values greater than 16 will return the LQIP if available)
     /// </summary>
 
+    [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class DownSampling : jxlNET.Parameter
     {
         public override string Description => "s, downsampling, 1,2,4,8,16, maximum permissible downsampling factor (values greater than 16 will return the LQIP if available)";

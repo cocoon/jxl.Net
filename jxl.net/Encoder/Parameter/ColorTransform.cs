@@ -9,10 +9,6 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -20,6 +16,7 @@ namespace jxlNET.Encoder.Parameters
     /// <summary>
     /// 'c', "colortransform", "0..2", "0=XYB, 1=None, 2=YCbCr"
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class ColorTransform : jxlNET.Parameter
     {
         public override string Description => "c, colortransform, 0..2, 0=XYB, 1=None, 2=YCbCr";

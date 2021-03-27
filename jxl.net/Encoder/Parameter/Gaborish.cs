@@ -10,9 +10,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -20,6 +18,7 @@ namespace jxlNET.Encoder.Parameters
     /// <summary>
     /// "gaborish", "0|1", "force disable gaborish."
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Gaborish : jxlNET.Parameter
     {
         public override string Description => "gaborish, 0|1, force disable gaborish.";

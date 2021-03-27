@@ -303,7 +303,7 @@ namespace jxlNET.Decoder
             if (OutFile.Extension.ToLower() == ".jpg" || OutFile.Extension.ToLower() == ".jpeg")
             {
                 //argsDecoder.Append("--jpeg ");
-                Params.Add(new Deccoder.Parameters.JPEG());
+                Params.Add(new jxlNET.Decoder.Parameters.JPEG());
             }
             else if (OutFile.Extension.ToLower() == ".png")
             {

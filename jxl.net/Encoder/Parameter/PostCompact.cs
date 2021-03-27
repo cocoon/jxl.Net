@@ -10,9 +10,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -22,7 +20,7 @@ namespace jxlNET.Encoder.Parameters
     /// 'Y', "post-compact", "PERCENT",
     /// [modular encoding] compact channels (per-group) if ratio used/range is below this (default: 80%)
     /// </summary>
-
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class PostCompact : jxlNET.Parameter
     {
         public override string Description => "Y, post-compact, PERCENT, [modular encoding] compact channels (per-group) if ratio used/range is below this (default: 80%)";

@@ -10,9 +10,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -21,6 +19,7 @@ namespace jxlNET.Encoder.Parameters
     /// 'E', "extra-properties", "K",
     /// [modular encoding] number of extra MA tree properties to use
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class ExtraProperties : jxlNET.Parameter
     {
         public override string Description => "E, extra-properties, K, [modular encoding] number of extra MA tree properties to use";

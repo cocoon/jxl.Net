@@ -9,10 +9,6 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -20,6 +16,7 @@ namespace jxlNET.Encoder.Parameters
     /// <summary>
     /// "epf", "-1..3", "Edge preserving filter level (-1 = choose based on quality, default)"
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class EdgePreservingFilterLevel : jxlNET.Parameter
     {
         public override string Description => "epf, -1..3, Edge preserving filter level (-1 = choose based on quality, default)";

@@ -9,10 +9,6 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -20,6 +16,7 @@ namespace jxlNET.Encoder.Parameters
     /// <summary>
     /// 'C', "colorspace", "K", "[modular encoding] color transform: 0=RGB, 1=YCoCg, "2-37=RCT (default: try several, depending on speed)"
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class ColorSpace : jxlNET.Parameter
     {
         public override string Description => "C, colorspace, K, [modular encoding] color transform: 0=RGB, 1=YCoCg, 2-37=RCT (default: try several, depending on speed)";

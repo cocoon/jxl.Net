@@ -10,9 +10,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -21,6 +19,7 @@ namespace jxlNET.Encoder.Parameters
     /// 'q', "quality", "QUALITY", "Quality setting (is remapped to --distance).
     /// Range: -inf .. 100. 100 = mathematically lossless. Default for already-lossy input (JPEG/GIF). Positive quality values roughly match libjpeg quality.
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Quality : jxlNET.Parameter
     {
         public override string Description => "q, quality, QUALITY, Quality setting (is remapped to --distance).\nRange: -inf.. 100.\n 100 = mathematically lossless. Default for already-lossy input (JPEG/GIF).\n Positive quality values roughly match libjpeg quality.";

@@ -10,16 +10,14 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Text;
+using System.Xml.Serialization;
 
-
-namespace jxlNET.Deccoder.Parameters
+namespace jxlNET.Decoder.Parameters
 {
     /// <summary>
     /// '\0', "color_space", "RGB_D65_SRG_Rel_Lin", defaults to original (input) color space
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class ColorSpace : jxlNET.Parameter
     {
         public override string Description => "\0, color_space, RGB_D65_SRG_Rel_Lin, defaults to original (input) color space";

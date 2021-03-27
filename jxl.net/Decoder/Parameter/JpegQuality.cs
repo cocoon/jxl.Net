@@ -10,18 +10,17 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
-namespace jxlNET.Deccoder.Parameters
+namespace jxlNET.Decoder.Parameters
 {
 
     /// <summary>
     /// 'q', "jpeg_quality", N, JPEG output quality. Setting an output quality implies --pixels_to_jpeg.
     /// </summary>
 
+    [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class JpegQuality : jxlNET.Parameter
     {
         public override string Description => "q, jpeg_quality, N, JPEG output quality. Setting an output quality implies --pixels_to_jpeg.";

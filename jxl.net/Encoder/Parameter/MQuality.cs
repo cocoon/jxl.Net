@@ -10,9 +10,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -20,6 +18,7 @@ namespace jxlNET.Encoder.Parameters
     /// <summary>
     /// 'Q', "mquality", "luma_q[,chroma_q]", "[modular encoding] lossy 'quality' (100=lossless, lower is more lossy)
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class MQuality : jxlNET.Parameter
     {
         public override string Description => "Q, mquality, luma_q[, chroma_q], [modular encoding] lossy quality (100=lossless, lower is more lossy)";

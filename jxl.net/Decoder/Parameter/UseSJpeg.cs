@@ -9,19 +9,19 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Text;
+using System.Xml.Serialization;
 
-
-namespace jxlNET.Deccoder.Parameters
+namespace jxlNET.Decoder.Parameters
 {
 
     /// <summary>
     /// '\0', "use_sjpeg", use sjpeg instead of libjpeg for JPEG output
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class UseSJpeg : jxlNET.Parameter
     {
         public override string Description => "\0, use_sjpeg, use sjpeg instead of libjpeg for JPEG output";

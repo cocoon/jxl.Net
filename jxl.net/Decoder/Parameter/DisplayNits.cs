@@ -10,18 +10,17 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
-namespace jxlNET.Deccoder.Parameters
+namespace jxlNET.Decoder.Parameters
 {
 
     /// <summary>
     /// '\0', "display_nits", 0.3-250, luminance range of the display to which to tone-map; the lower bound can be omitted, &amp;display_nits, &amp;ParseLuminanceRange);
     /// </summary>
 
+    [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class DisplayNits : jxlNET.Parameter
     {
         public override string Description => "\0, display_nits, 0.3-250, luminance range of the display to which to tone-map; the lower bound can be omitted, &display_nits, &ParseLuminanceRange);";

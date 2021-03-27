@@ -10,9 +10,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -21,6 +19,7 @@ namespace jxlNET.Encoder.Parameters
     /// 'R', "responsive", "K",
     /// [modular encoding] do Squeeze transform, 0=false, 1=true (default: true if lossy, false if lossless)
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Responsive : jxlNET.Parameter
     {
         public override string Description => "R, responsive, K, [modular encoding] do Squeeze transform, 0=false, 1=true (default: true if lossy, false if lossless)";

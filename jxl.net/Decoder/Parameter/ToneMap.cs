@@ -9,14 +9,13 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Text;
+using System.Xml.Serialization;
 
-
-namespace jxlNET.Deccoder.Parameters
+namespace jxlNET.Decoder.Parameters
 {
 
     /// <summary>
@@ -25,6 +24,7 @@ namespace jxlNET.Deccoder.Parameters
     ///  instead of performing a naive 0-1 -&gt; 0-1 conversion,
     ///  &amp;tone_map, &amp;SetBooleanTrue)
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class ToneMap : jxlNET.Parameter
     {
         public override string Description => "\0, tone_map, tone map the image to the luminance range indicated by --display_nits instead of performing a naive 0-1 -> 0-1 conversion, &tone_map, &SetBooleanTrue)";

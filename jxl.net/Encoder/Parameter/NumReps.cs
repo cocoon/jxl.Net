@@ -10,9 +10,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -21,6 +19,7 @@ namespace jxlNET.Encoder.Parameters
     /// <summary>
     /// "num_reps", "N", "how many times to compress."
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class NumReps : jxlNET.Parameter
     {
         public override string Description => "num_reps, N, how many times to compress.";

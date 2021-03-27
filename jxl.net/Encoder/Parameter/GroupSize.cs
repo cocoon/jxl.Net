@@ -10,9 +10,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -20,6 +18,7 @@ namespace jxlNET.Encoder.Parameters
     /// <summary>
     /// 'g', "group-size", "K", [modular encoding] set group size to 128 &lt;&lt; K (default: 1 or 2)"
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class GroupSize : jxlNET.Parameter
     {
         public override string Description => "g, group-size, K, [modular encoding] set group size to 128 << K (default: 1 or 2)";

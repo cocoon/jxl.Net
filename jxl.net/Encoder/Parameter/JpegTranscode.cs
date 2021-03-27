@@ -9,11 +9,7 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Text;
-
+using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
 {
@@ -21,6 +17,7 @@ namespace jxlNET.Encoder.Parameters
     /// <summary>
     /// 'j', "jpeg_transcode","Do lossy transcode of input JPEG file (decode to pixels instead of doing lossless transcode)."
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class JpegTranscode : jxlNET.Parameter
     {
         public override string Description => "j, jpeg_transcode, Do lossy transcode of input JPEG file(decode to pixels instead of doing lossless transcode).";

@@ -88,7 +88,7 @@ namespace jxlNET.Decoder
                     {
                         ProcessStartInfo startInfo = new ProcessStartInfo
                         {
-                            Arguments = new Deccoder.Parameters.Version().Param,
+                            Arguments = new jxlNET.Decoder.Parameters.Version().Param,
                             FileName = DecoderPath,
                             WorkingDirectory = WorkingDirectory,
 

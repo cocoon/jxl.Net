@@ -10,9 +10,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -21,7 +19,7 @@ namespace jxlNET.Encoder.Parameters
     /// <summary>
     /// "saliency_threshold", "0..1"
     /// </summary>
-
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class SaliencyThreshold : jxlNET.Parameter
     {
         public override string Description => "saliency_threshold, 0..1";

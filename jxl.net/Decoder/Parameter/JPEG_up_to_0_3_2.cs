@@ -9,14 +9,9 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
+using System.Xml.Serialization;
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Text;
-
-
-namespace jxlNET.Deccoder.Parameters
+namespace jxlNET.Decoder.Parameters
 {
 
     /// <summary>
@@ -27,6 +22,7 @@ namespace jxlNET.Deccoder.Parameters
     ///  the original image. The output file if provided must be a .jpg or .jpeg 
     ///  file.
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class JPEG_up_to_0_3_2 : jxlNET.Parameter
     {
         public override string Description => "j, jpeg, decode directly to JPEG when possible.\nDepending on the JPEG XL mode used when encoding this will produce an exact original JPEG file, a lossless pixel image data in a JPEG file or just a similar JPEG than the original image.\nThe output file if provided must be a .jpg or .jpeg file.";

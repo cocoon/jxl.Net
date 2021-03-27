@@ -10,9 +10,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -21,6 +19,7 @@ namespace jxlNET.Encoder.Parameters
     /// "palette", "K",
     /// [modular encoding] use a palette if image has at most K colors (default: 1024)
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Palette : jxlNET.Parameter
     {
         public override string Description => "palette, K, [modular encoding] use a palette if image has at most K colors (default: 1024)";

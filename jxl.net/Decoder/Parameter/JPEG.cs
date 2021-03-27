@@ -9,14 +9,9 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
+using System.Xml.Serialization;
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Text;
-
-
-namespace jxlNET.Deccoder.Parameters
+namespace jxlNET.Decoder.Parameters
 {
 
     /// <summary>
@@ -27,6 +22,7 @@ namespace jxlNET.Deccoder.Parameters
     ///  The output file if provided must be a .jpg or .jpeg file.,
     ///  &amp;decode_to_pixels, &amp;SetBooleanTrue);
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class JPEG : jxlNET.Parameter
     {
         public override string Description => "j, pixels_to_jpeg, By default, if the input JPEG XL contains a recompressed JPEG file, djxl reconstructs the exact original JPEG file. This flag causes the decoder to instead decode the image to pixels and encode a new (lossy) JPEG. The output file if provided must be a .jpg or .jpeg file.";

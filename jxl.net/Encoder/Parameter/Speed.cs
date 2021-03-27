@@ -10,9 +10,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -25,7 +23,7 @@ namespace jxlNET.Encoder.Parameters
     /// Default: squirrel (7).
     /// Values are in order from faster to slower."
     /// </summary>
-
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Speed : jxlNET.Parameter
     {
         public override string Description => "s, speed, EFFORT, Encoder effort/speed setting.\n Valid values are:\n 3|falcon| 4|cheetah| 5|hare| 6|wombat| 7|squirrel| 8|kitten| 9|tortoise\n Default: squirrel (7).\n Values are in order from faster to slower.";

@@ -9,11 +9,7 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Text;
-
+using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
 {
@@ -23,6 +19,7 @@ namespace jxlNET.Encoder.Parameters
     /// would be necessary for perfect preservation; for the time being, it is 
     /// recommended to set --palette=0 with this option to use the default palette only
     /// </summary>
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class LossyPalette : jxlNET.Parameter
     {
         public override string Description => "lossy-palette, [modular encoding] quantize to a palette that has fewer entries than would be necessary for perfect preservation; for the time being, it is recommended to set --palette=0 with this option to use the default palette only";

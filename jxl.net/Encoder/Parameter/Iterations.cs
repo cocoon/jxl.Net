@@ -10,9 +10,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -23,7 +21,7 @@ namespace jxlNET.Encoder.Parameters
     /// [modular encoding] fraction of pixels used to learn MA trees 
     /// default=0.5, try 0 for no MA and fast decode
     /// </summary>
-
+    [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Iterations : jxlNET.Parameter
     {
         public override string Description => "I, iterations, F, [modular encoding] fraction of pixels used to learn MA trees default=0.5, try 0 for no MA and fast decode";

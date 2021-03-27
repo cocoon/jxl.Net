@@ -10,12 +10,10 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Text;
 using System.Xml.Serialization;
 
-namespace jxlNET.Deccoder.Parameters
+namespace jxlNET.Decoder.Parameters
 {
 
     /// <summary>
@@ -25,6 +23,8 @@ namespace jxlNET.Deccoder.Parameters
     /// because the user may have set it to that.
     /// </summary>
     /// </summary>
+
+    [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class NumThreads : jxlNET.Parameter
     {
         public override string Description => "num_threads, N, number of worker threads (zero = none).";
