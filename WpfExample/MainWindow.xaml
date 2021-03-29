@@ -299,18 +299,21 @@
 
 
         <Grid Grid.Row="1" Grid.Column="1">
-            <Grid HorizontalAlignment="Center" >
-                <Image x:Name="ImageBefore" HorizontalAlignment="Left" Source="{Binding ImageSource1}"/>
+
+            <local:ZoomBorder x:Name="border" ClipToBounds="True" Background="Gray">
+                <Grid HorizontalAlignment="Center" >
+                    <Image x:Name="ImageBefore" HorizontalAlignment="Left" Source="{Binding ImageSource1}"/>
 
 
-                <Rectangle HorizontalAlignment="Left" Width="{Binding Value, ElementName=Slider}" Height="{Binding ActualHeight, ElementName=ImageBefore}">
-                    <Rectangle.Fill>
-                        <ImageBrush x:Name="ImageAfter" Stretch="UniformToFill" AlignmentX="Left" AlignmentY="Top" ImageSource="{Binding ImageSource2, Mode=OneWay}" />
-                    </Rectangle.Fill>
-                </Rectangle>
+                    <Rectangle HorizontalAlignment="Left" Width="{Binding Value, ElementName=Slider}" Height="{Binding ActualHeight, ElementName=ImageBefore}">
+                        <Rectangle.Fill>
+                            <ImageBrush x:Name="ImageAfter" Stretch="UniformToFill" AlignmentX="Left" AlignmentY="Top" ImageSource="{Binding ImageSource2, Mode=OneWay}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
 
-                <Slider x:Name="Slider" Style="{StaticResource Horizontal_Slider}" Maximum="{Binding ActualWidth, ElementName=ImageBefore}" Width="{Binding ActualWidth, ElementName=ImageBefore}" Height="{Binding ActualHeight, ElementName=ImageBefore}" VerticalAlignment="Center" Value="100" />
-            </Grid>
+                    <Slider x:Name="Slider" Style="{StaticResource Horizontal_Slider}" Maximum="{Binding ActualWidth, ElementName=ImageBefore}" Width="{Binding ActualWidth, ElementName=ImageBefore}" Height="{Binding ActualHeight, ElementName=ImageBefore}" VerticalAlignment="Center" Value="100" />
+                </Grid>
+            </local:ZoomBorder>
         </Grid>
 
 
