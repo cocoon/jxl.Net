@@ -19,7 +19,7 @@
         xmlns:local="clr-namespace:WpfExample"
         mc:Ignorable="d"
         
-        Title="JPEG-XL WPF Example UI" Height="900" Width="1600">
+        Title="JPEG-XL WPF Example UI" Height="900" Width="1630">
 
     <Window.Resources>
 
@@ -56,7 +56,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Thumb">
                         <Grid>
-                            <Rectangle Height="40" Width="40" Fill="red" Opacity="0.2"/>
+                            <Rectangle Height="20" Width="20" Fill="red" Opacity="0.2"/>
                             <Rectangle Height="{Binding Height, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Slider}}}" Width="6" Fill="red" Opacity="0.2"/>
                         </Grid>
                     </ControlTemplate>
@@ -269,9 +269,9 @@
 
             </DockPanel>
 
-            <GridSplitter Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext"/>
+            <GridSplitter Grid.Column="1" Grid.RowSpan="2" Width="25" HorizontalAlignment="Left" VerticalAlignment="Stretch" ResizeBehavior="BasedOnAlignment"/>
             
-            <DockPanel Grid.Column="1" Grid.RowSpan="2" LastChildFill="True">
+            <DockPanel Margin="5,0,0,0" Grid.Column="1" Grid.RowSpan="2" LastChildFill="True">
                 <Label DockPanel.Dock="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" Background="LightGray">Available Parameter</Label>
                 <ListBox  Name="LbParam" HorizontalContentAlignment="Left" >
                     <ListBox.Resources>
@@ -282,7 +282,7 @@
                 </ListBox>
             </DockPanel>
 
-            <GridSplitter  Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ResizeBehavior="BasedOnAlignment"/>
+            <GridSplitter Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ResizeBehavior="BasedOnAlignment"/>
             
             <!-- Row 1 -->
             <DockPanel Grid.Column="0" Grid.Row="1" LastChildFill="True">
@@ -300,7 +300,9 @@
 
         </Grid>
 
+        
         <GridSplitter Grid.Row="1" Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext"/>
+        <GridSplitter Grid.Row="1" Grid.Column="1" Width="5" HorizontalAlignment="Left" VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext"/>
         
         <Grid Grid.Row="1" Grid.Column="1">
 
