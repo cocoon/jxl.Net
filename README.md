@@ -5,6 +5,8 @@ jpeg-xl dotnet csharp encoder decoder wrapper and example WPF GUI
 ### WARNING
 This project (and the official jpeg-xl encoder / decoder) is still in its very early stage of development. There are bugs and missing features.
 
+### [visit: Wiki](https://github.com/cocoon/jxl.Net/wiki)
+
 
 ## Getting Started
 
