@@ -12,6 +12,7 @@
 using jxlNET.Encoder.Parameters;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Xml.Serialization;
 
@@ -119,6 +120,13 @@ namespace jxlNET
         public abstract string ParamLong { get; }
 
         public abstract OptionType OptionType { get; }
+
+        //encoder expects dot as separator
+        public static NumberStyles nStyle = NumberStyles.Number;
+        public static CultureInfo cultureInfo = new CultureInfo("en-US");
+        public static NumberFormatInfo n = new NumberFormatInfo { NumberDecimalSeparator = ",", NumberGroupSeparator = "." };
+
+
 
         //Constructor
         public Parameter() { }

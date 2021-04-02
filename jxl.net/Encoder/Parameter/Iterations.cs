@@ -11,6 +11,7 @@
 
 using System;
 using System.Diagnostics.Contracts;
+using System.Globalization;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
@@ -77,7 +78,7 @@ namespace jxlNET.Encoder.Parameters
 
         public override string ToString()
         {
-            return Param + " " + Value.ToString();
+            return Param + " " + Value.ToString("N2", cultureInfo);
         }
     }
 }

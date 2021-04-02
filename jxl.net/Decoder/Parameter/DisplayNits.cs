@@ -78,7 +78,7 @@ namespace jxlNET.Decoder.Parameters
 
         public override string ToString()
         {
-            return Param + " " + Value.ToString();
+            return Param + " " + Value.ToString("N2", cultureInfo);
         }
     }
 }

@@ -11,6 +11,7 @@
 
 using jxlNET;
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -126,8 +127,14 @@ namespace WpfExample
 
                         float Value = (float)propertyInfoValue.GetValue(o, null);
 
+                        //encoder expects dot as separator
+                        NumberStyles nStyle = NumberStyles.Number;
+                        CultureInfo cultureInfo = new CultureInfo("en-US");
+                        NumberFormatInfo n = cultureInfo.NumberFormat;
+                        n.NumberDecimalSeparator = ".";
+
                         TextBox tBox = new TextBox();
-                        tBox.Text = Value.ToString();
+                        tBox.Text = Value.ToString("N2", n);
                         tBox.ToolTip = tTip;
 
                         Button b = new Button();
@@ -139,7 +146,7 @@ namespace WpfExample
                             try
                             {
                                 float val = Value;
-                                float.TryParse(tBox.Text, out val);
+                                float.TryParse(tBox.Text, nStyle, cultureInfo, out val);
                                 instance.Value = val;
                                 Encoder.AddOrReplaceParam(instance);
                                 Console.WriteLine("Param button clicked: " + Name);
