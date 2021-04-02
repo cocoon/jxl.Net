@@ -241,7 +241,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-
+            
             <DockPanel Grid.Column="0" LastChildFill="True">
                 <Label Name="lblProcessText" DockPanel.Dock="Top" FontWeight="Bold" HorizontalContentAlignment="Center" Background="LightGray">Process Text</Label>
 
@@ -269,7 +269,8 @@
 
             </DockPanel>
 
-
+            <GridSplitter Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext"/>
+            
             <DockPanel Grid.Column="1" Grid.RowSpan="2" LastChildFill="True">
                 <Label DockPanel.Dock="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" Background="LightGray">Available Parameter</Label>
                 <ListBox  Name="LbParam" HorizontalContentAlignment="Left" >
@@ -281,6 +282,8 @@
                 </ListBox>
             </DockPanel>
 
+            <GridSplitter  Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ResizeBehavior="BasedOnAlignment"/>
+            
             <!-- Row 1 -->
             <DockPanel Grid.Column="0" Grid.Row="1" LastChildFill="True">
                 <Label Name="lblEncoderMessages" HorizontalContentAlignment="Center" Background="LightGray" DockPanel.Dock="Top" FontWeight="Bold">Encoder / Decoder Messages</Label>
@@ -297,7 +300,8 @@
 
         </Grid>
 
-
+        <GridSplitter Grid.Row="1" Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext"/>
+        
         <Grid Grid.Row="1" Grid.Column="1">
 
             <local:ZoomBorder x:Name="border" ClipToBounds="True" Background="Gray">
