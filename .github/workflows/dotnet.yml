@@ -19,6 +19,6 @@ jobs:
     - name: Restore nuget dependencies
       run: nuget restore jxlNET.sln
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore --configuration Release /p:Platform=x64 /p:AllowUnsafeBlocks=true
     - name: Test
       run: dotnet test --no-build --verbosity normal
