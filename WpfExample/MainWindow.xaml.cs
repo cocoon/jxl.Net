@@ -119,9 +119,16 @@ namespace WpfExample
             {
                 if (File.Exists(Image1))
                 {
-                    using (var image = new MagickImage(Image1))
+                    try
                     {
-                        return image.ToBitmapSource();
+                        using (var image = new MagickImage(Image1))
+                        {
+                            return image.ToBitmapSource();
+                        }
+                    }
+                    catch
+                    {
+                        return redImage();
                     }
                 }
                 else
@@ -149,9 +156,24 @@ namespace WpfExample
             {
                 if (File.Exists(Image2))
                 {
-                    using (var image = new MagickImage(Image2))
+                    try
                     {
-                        return image.ToBitmapSource();
+                        int counter = 0;
+                        while (!FileReady(Image2)) {
+                            if (counter == 100) break;
+                            //Console.WriteLine("File not ready");
+                            System.Threading.Thread.Sleep(100);
+                            counter++;
+                        }
+                        
+                        using (var image = new MagickImage(Image2))
+                        {
+                            return image.ToBitmapSource();
+                        }
+                    }
+                    catch
+                    {
+                        return redImage();
                     }
                 }
                 else
@@ -165,6 +187,21 @@ namespace WpfExample
         #endregion
 
         #region FileSystemWatcher
+
+        public static bool FileReady(string FilePath)
+        {
+            try
+            {
+                using (FileStream stream = File.Open(FilePath, FileMode.Open, FileAccess.Read, FileShare.None))
+                    return stream.Length > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
         private FileSystemWatcher _watcher = new FileSystemWatcher();
 
         private void initWatcher(string Path)
@@ -200,6 +237,8 @@ namespace WpfExample
             try
             {
                 _watcher.EnableRaisingEvents = false;
+
+                //Console.WriteLine($"e: {e.FullPath} Image2: {new FileInfo(Image2).FullName}");
 
                 if (e != null && e.FullPath == new FileInfo(Image2).FullName)
                 {
