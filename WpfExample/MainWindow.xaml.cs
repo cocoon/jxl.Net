@@ -95,15 +95,21 @@ namespace WpfExample
         }
 
 
-
+        private string _image1 = String.Empty;
         public string Image1
         {
-            get
-            {
-                if (Enc != null && Enc.InFile != null) return Enc.InFile.FullName;
-                else return string.Empty;
+            get { return _image1; }
+            set { 
+                _image1 = value;
+                if (Enc != null)
+                {
+                    Enc.InFilePath = value;
+                    Image2 = Enc.OutFilePath;
+                }
+                NotifyPropertyChanged(); NotifyPropertyChanged("ImageSource1"); 
             }
         }
+
 
         private BitmapSource _imageSource1;
 
@@ -126,12 +132,12 @@ namespace WpfExample
         }
 
 
+        private string _image2 = String.Empty;
+
         public string Image2
         {
-            get {
-                if (Enc != null && Enc.OutFile != null) return Enc.OutFile.FullName;
-                else return string.Empty;
-            }
+            get { return _image2; }
+            set { _image2 = value; initWatcher(value); NotifyPropertyChanged(); NotifyPropertyChanged("ImageSource2"); }
         }
 
 
@@ -182,6 +188,8 @@ namespace WpfExample
                         _watcher.Renamed += fsChangeHandler;
                         _watcher.Filter = "*.*";
                         _watcher.EnableRaisingEvents = true;
+
+                        if (File.Exists(Path)) OnFsEvent(Image2);
                     }
                 }
             }
@@ -193,7 +201,7 @@ namespace WpfExample
             {
                 _watcher.EnableRaisingEvents = false;
 
-                if (e != null && e.FullPath == Image2)
+                if (e != null && e.FullPath == new FileInfo(Image2).FullName)
                 {
                     OnFsEvent(Image2);
                 }
@@ -271,6 +279,7 @@ namespace WpfExample
             if (File.Exists(example))
             {
                 Enc.InFile = new FileInfo(example);
+                Image1 = example;
             }
 
 
@@ -281,9 +290,16 @@ namespace WpfExample
             Console.WriteLine("Encode with Quality: " + q.Value);
             Enc.AddOrReplaceParam(q);
 
-            // Configure Speed
-            jxlNET.Encoder.Parameters.Speed s = new jxlNET.Encoder.Parameters.Speed(3);
-            Enc.AddOrReplaceParam(s);
+            // Configure Speed (deprecated in v0.5.0)
+            //jxlNET.Encoder.Parameters.Speed s = new jxlNET.Encoder.Parameters.Speed(3);
+            //Enc.AddOrReplaceParam(s);
+
+            // Configure Effort
+            jxlNET.Encoder.Parameters.Effort e = new jxlNET.Encoder.Parameters.Effort(3);
+            Enc.AddOrReplaceParam(e);
+
+            //Enc.CmdLine += (" --lossless_jpeg=0 ");
+
 
             // print out all current set parameter
             foreach (var p in enc.Params)
@@ -381,6 +397,26 @@ namespace WpfExample
             }
         }
 
+        private void BtnOutput_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+
+                openFileDialog.Filter = "JPEG files (*.jpg)|*.jpg|All files (*.*)|*.*";
+                openFileDialog.InitialDirectory = new DirectoryInfo(Enc.OutFilePath).Root.FullName;
+
+                openFileDialog.Multiselect = false;
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    if (Enc != null) Enc.OutFilePath = openFileDialog.FileName;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
 
         private void btnEncode_Click(object sender, RoutedEventArgs e)
         {
@@ -563,6 +599,7 @@ namespace WpfExample
             //needed to enable drag drop for other types besides strings
             e.Handled = true;
         }
+
 
 
         #endregion

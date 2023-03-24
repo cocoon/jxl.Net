@@ -159,7 +159,7 @@ namespace jxlViewer
             {
                 _watcher.EnableRaisingEvents = false;
 
-                if (e != null && e.FullPath == Image2)
+                if (e != null && e.FullPath == new FileInfo(Image2).FullName)
                 {
                     OnFsEvent(Image2);
                 }

@@ -190,7 +190,8 @@ namespace jxlNET.Encoder
         {
             //new Modular(), //-m -s X -q 100 = crash with example jpeg
             new Quality(100),
-            new Speed(9)
+            //new Speed(9) // in v0.8.0 -s is not available anylonger, it is now -e for EFFORT
+            new Effort(9),
         };
         public List<Parameter> Params
         {
@@ -281,6 +282,21 @@ namespace jxlNET.Encoder
                     //Param
                     //args.Append(param.Param);
                     args.Append(param.ToString());
+
+                    try
+                    {
+                        if (param.GetType() == typeof(Quality) && ((Quality)param).Value < 100) args.Append(" --lossless_jpeg=0");
+                    }
+                    catch(Exception ex)
+                    { }
+
+                    try
+                    {
+                        if (param.GetType() == typeof(Distance) && ((Distance)param).Value > 1.0) args.Append(" --lossless_jpeg=0");
+                    }
+                    catch (Exception ex)
+                    { }
+
                 }
             }
 

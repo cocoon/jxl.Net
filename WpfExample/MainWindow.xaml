@@ -19,6 +19,7 @@
         xmlns:local="clr-namespace:WpfExample"
         mc:Ignorable="d"
         
+        Icon="005_1024.png"
         Title="JPEG-XL WPF Example UI" Height="900" Width="1630">
 
     <Window.Resources>
@@ -199,14 +200,14 @@
             <DockPanel LastChildFill="True" AllowDrop="True" Drop="Drop_Input">
                 <Label Name="lblInput" Width="100" FontWeight="Bold">Input File:</Label>
                 <Button Name="BtnInput" Content="..." Width="40" Click="BtnInput_Click"/>
-                <TextBox Name="txtBoxInput" Text="{Binding Enc.InFilePath}" ToolTip="{Binding Enc.InFilePath}" VerticalContentAlignment="Center" PreviewDragOver="txtBoxInput_PreviewDragOver" />
+                <TextBox Name="txtBoxInput" Text="{Binding Image1}" ToolTip="{Binding Enc.InFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" PreviewDragOver="txtBoxInput_PreviewDragOver" />
             </DockPanel>
 
 
             <DockPanel LastChildFill="True" AllowDrop="True" Drop="Drop_Output">
                 <Label Name="lblOutput" Width="100" FontWeight="Bold">Output File:</Label>
-                <Button Name="BtnOutput" Content="..." Width="40"/>
-                <TextBox Name="txtBoxOutput" Text="{Binding Enc.OutFilePath}" ToolTip="{Binding Enc.OutFilePath}" VerticalContentAlignment="Center" PreviewDragOver="txtBoxOutput_PreviewDragOver"/>
+                <Button Name="BtnOutput" Content="..." Width="40" Click="BtnOutput_Click"/>
+                <TextBox Name="txtBoxOutput" Text="{Binding Image2}" ToolTip="{Binding Enc.OutFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" PreviewDragOver="txtBoxOutput_PreviewDragOver"/>
             </DockPanel>
             
             

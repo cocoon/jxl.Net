@@ -8,11 +8,11 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("WpfExample")]
-[assembly: AssemblyDescription("Example WPF GUI for jpeg-xl encoder (cjxl.exe) and decoder (djxl.exe)")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("WpfExample")]
-[assembly: AssemblyCopyright("Copyright github.com/cocoon ©  2021")]
+[assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

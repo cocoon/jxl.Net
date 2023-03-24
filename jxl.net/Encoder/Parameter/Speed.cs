@@ -26,7 +26,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Speed : jxlNET.Parameter
     {
-        public override string Description => "s, speed, EFFORT, Encoder effort/speed setting.\n Valid values are:\n 3|falcon| 4|cheetah| 5|hare| 6|wombat| 7|squirrel| 8|kitten| 9|tortoise\n Default: squirrel (7).\n Values are in order from faster to slower.";
+        public override string Description => "s, speed, EFFORT, Encoder effort/speed setting.\ncjxl flag --speed is deprecated since 0.5.0 and replaced by the --effort synonym!\n Valid values are:\n 3|falcon| 4|cheetah| 5|hare| 6|wombat| 7|squirrel| 8|kitten| 9|tortoise\n Default: squirrel (7).\n Values are in order from faster to slower.";
         public override string Name => "Speed";
         public override string Param => "-s";
         public override string ParamLong => "--speed";
