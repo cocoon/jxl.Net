@@ -292,7 +292,7 @@ namespace jxlNET.Encoder
 
                     try
                     {
-                        if (param.GetType() == typeof(Distance) && ((Distance)param).Value > 1.0) args.Append(" --lossless_jpeg=0");
+                        if (param.GetType() == typeof(Distance) && ((Distance)param).Value > 0) args.Append(" --lossless_jpeg=0");
                     }
                     catch (Exception ex)
                     { }
