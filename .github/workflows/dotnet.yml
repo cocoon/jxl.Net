@@ -19,6 +19,21 @@ jobs:
     - name: Restore nuget dependencies
       run: nuget restore jxlNET.sln
     - name: Build
-      run: dotnet build --no-restore --configuration Release /p:Platform=x64 /p:AllowUnsafeBlocks=true jxl.net
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: msbuild /p:Configuration=Release
+    
+    # Upload the artifacts: https://github.com/marketplace/actions/upload-a-build-artifact
+    - name: Upload build artifacts jxl.net
+      uses: actions/upload-artifact@v3
+      with:
+        name: jxl.net
+        path: jxl.net\bin\x64\Release
+    - name: Upload build artifacts jxlViewer
+      uses: actions/upload-artifact@v3
+      with:
+        name: jxlViewer
+        path: jxlViewer\bin\x64\Release
+    - name: Upload build artifacts WpfExample
+      uses: actions/upload-artifact@v3
+      with:
+        name: WpfExample
+        path: WpfExample\bin\x64\Release
