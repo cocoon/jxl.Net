@@ -42,12 +42,12 @@ jobs:
         name: jxl.net
         path: jxl.net\bin\x64\Release
     - name: Upload build artifacts jxlViewer
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: jxlViewer
         path: jxlViewer\bin\x64\Release
     - name: Upload build artifacts WpfExample
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: WpfExample
         path: WpfExample\bin\x64\Release
