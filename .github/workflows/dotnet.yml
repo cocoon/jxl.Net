@@ -37,7 +37,7 @@ jobs:
     
     # Upload the artifacts: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts jxl.net
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: jxl.net
         path: jxl.net\bin\x64\Release
