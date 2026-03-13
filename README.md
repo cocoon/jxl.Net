@@ -3,14 +3,12 @@ jpeg-xl dotnet csharp encoder decoder wrapper and example WPF GUI
 <br>Official jpeg-xl repository: https://gitlab.com/wg1/jpeg-xl/
 
 ### WARNING
-This project (and the official jpeg-xl encoder / decoder) is still in its very early stage of development. There are bugs and missing features.
+This project (and the official jpeg-xl encoder / decoder) is still in its ~~very~~ early stage of development. There are bugs and missing features.
 
 ### [visit: Wiki](https://github.com/cocoon/jxl.Net/wiki)
 
 
 ## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 [Obtain or compile](https://github.com/cocoon/jxl.Net/wiki/Where-to-get-encoder-and-decoder-binaries) recent jpeg-xl encoder (cjxl.exe) and decoder (djxl.exe) binaries and place it into the application folder or configure the path in code.
@@ -22,7 +20,7 @@ EncoderOptions encOptions = new EncoderOptions
 };
 ```
 
-Current version used was v0.3.6.
+Initial version used for development was v0.3.6, last tested v0.11.2 (maybe some old parameters are no longer available like UseNewHeuristics or new ones might be missing and would need updates).
 
 
 # WPF GUI Example 
