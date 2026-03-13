@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfExample", "WpfExample\Wp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jxlViewer", "jxlViewer\jxlViewer.csproj", "{BD7A4274-6EA2-496A-B381-BE698905379E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfExampleCore", "WpfExampleCore\WpfExampleCore.csproj", "{A077AC69-5C81-7329-D603-0013C1A79688}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
