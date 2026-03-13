@@ -102,10 +102,10 @@
       <Version>14.10.4</Version>
     </PackageReference>
     <PackageReference Include="Magick.NET.SystemDrawing">
-      <Version>7.0.0</Version>
+      <Version>8.0.17</Version>
     </PackageReference>
     <PackageReference Include="Magick.NET.SystemWindowsMedia">
-      <Version>7.0.0</Version>
+      <Version>8.0.17</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
