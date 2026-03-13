@@ -13,15 +13,15 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         fetch-depth: 0
 
     # Install the .NET Core workload
     - name: Install .NET Core
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v5
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 10.0.x
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
@@ -32,8 +32,12 @@ jobs:
       run: dotnet restore
     - name: Restore nuget dependencies
       run: nuget restore jxlNET.sln
+      
     - name: Build
       run: msbuild /p:Configuration=Release
+
+    - name: Publish single-file app
+      run: dotnet publish ./WpfExampleCore/WpfExampleCore.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=false -p:EnableCompressionInSingleFile=true -f net10.0-windows -p:AllowUnsafeBlocks=true
     
     # Upload the artifacts: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts jxl.net
@@ -51,3 +55,8 @@ jobs:
       with:
         name: WpfExample
         path: WpfExample\bin\x64\Release
+    - name: Upload build artifacts WpfExampleCore
+      uses: actions/upload-artifact@v4
+      with:
+        name: WpfExampleCore
+        path: WpfExampleCore\bin\Release\net10.0-windows\win-x64\publish
