@@ -321,8 +321,8 @@
                         </Rectangle.Fill>
                     </Rectangle>
 
-                    <!-- <Slider x:Name="Slider" Style="{StaticResource Horizontal_Slider}" Maximum="{Binding ActualWidth, ElementName=ImageBefore}" Width="{Binding ActualWidth, ElementName=ImageBefore}" Height="{Binding ActualHeight, ElementName=ImageBefore}" VerticalAlignment="Center" Value="100" /> -->
-
+                    <Slider x:Name="Slider" Style="{StaticResource Horizontal_Slider}" Maximum="{Binding ActualWidth, ElementName=ImageBefore}" Width="{Binding ActualWidth, ElementName=ImageBefore}" Height="{Binding ActualHeight, ElementName=ImageBefore}" VerticalAlignment="Center" Value="100" />
+<!--
                     <Slider x:Name="Slider"
                         Style="{StaticResource Horizontal_Slider}"
                         Maximum="{Binding ActualWidth, ElementName=ImageBefore}"
@@ -338,6 +338,7 @@
                                 ScaleY="{Binding ElementName=ZoomBorder, Path=CurrentScale, Converter={StaticResource InverseConverter}}" />
                         </Slider.LayoutTransform>
                     </Slider>
+-->
 
                 </Grid>
             </core:ZoomBorder>
