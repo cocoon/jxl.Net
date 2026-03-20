@@ -22,6 +22,37 @@ namespace WpfExample
 {
     public static class ListBoxParameter
     {
+        static void AddRow(Grid grid, Control col1, Control col2, Control col3, Control col4)
+        {
+            // Add row
+            grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            int row = grid.RowDefinitions.Count - 1;
+
+            // Column 1
+            var tb1 = col1;
+            Grid.SetRow(tb1, row);
+            Grid.SetColumn(tb1, 0);
+            grid.Children.Add(tb1);
+
+            // Column 2
+            var tb2 = col2;
+            Grid.SetRow(tb2, row);
+            Grid.SetColumn(tb2, 1);
+            grid.Children.Add(tb2);
+
+            // Column 3
+            var tb3 = col3;
+            Grid.SetRow(tb3, row);
+            Grid.SetColumn(tb3, 2);
+            grid.Children.Add(tb3);
+
+            // Column 4
+            var tb4 = col4;
+            Grid.SetRow(tb4, row);
+            Grid.SetColumn(tb4, 3);
+            grid.Children.Add(tb4);
+        }
+
         public static void FillListBox(ListBox ListBox, jxlNET.Encoder.Encoder Encoder)
         {
             Console.WriteLine("FillListBox started ...");
@@ -64,12 +95,24 @@ namespace WpfExample
                 PropertyInfo propertyInfoParamVerbose = t.GetProperty("ParamLong");
                 string ParamVerbose = propertyInfoParamVerbose.GetValue(o, null).ToString();
 
+
+                var grid = new Grid();
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
+
+                grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                int rowIndex = grid.RowDefinitions.Count - 1;
+
                 ToolTip tTip = new ToolTip();
                 tTip.Content = Description;
 
                 EditRow row = new EditRow();
                 row.LabelFor = Name;
                 row.ToolTip = tTip;
+
+                Label labelname = new Label { Content = Name };
 
                 Button bRemove = new Button();
                 bRemove.Height = 20;
@@ -114,13 +157,9 @@ namespace WpfExample
                                 Console.WriteLine("Param button clicked: " + Name);
                             } catch(Exception error) { MessageBox.Show(error.ToString()); }
                         });
-
-                        StackPanel sp = new StackPanel();
-                        sp.Orientation = Orientation.Horizontal;
-                        sp.Children.Add(bRemove);
-                        sp.Children.Add(b);
-                        sp.Children.Add(tBox);
-                        row.Content = sp;
+                        
+                        Button bAdd = b;
+                        AddRow(grid,bRemove, bAdd, labelname, tBox);
                     }
                     else if (propertyInfoValue.PropertyType == typeof(float))
                     {
@@ -153,13 +192,10 @@ namespace WpfExample
                             }
                             catch (Exception error) { MessageBox.Show(error.ToString()); }
                         });
+                        
+                        Button bAdd = b;
+                        AddRow(grid, bRemove, bAdd, labelname, tBox);
 
-                        StackPanel sp = new StackPanel();
-                        sp.Orientation = Orientation.Horizontal;
-                        sp.Children.Add(bRemove);
-                        sp.Children.Add(b);
-                        sp.Children.Add(tBox);
-                        row.Content = sp;
                     }
                     else if (propertyInfoValue.PropertyType == typeof(string))
                     {
@@ -185,12 +221,8 @@ namespace WpfExample
                             catch (Exception error) { MessageBox.Show(error.ToString()); }
                         });
 
-                        StackPanel sp = new StackPanel();
-                        sp.Orientation = Orientation.Horizontal;
-                        sp.Children.Add(bRemove);
-                        sp.Children.Add(b);
-                        sp.Children.Add(tBox);
-                        row.Content = sp;
+                        Button bAdd = b;
+                        AddRow(grid, bRemove, bAdd, labelname, tBox);
 
                     }
                     //jxlNET.EdgePreservingFilterLevel
@@ -223,12 +255,8 @@ namespace WpfExample
                             catch (Exception error) { MessageBox.Show(error.ToString()); }
                         });
 
-                        StackPanel sp = new StackPanel();
-                        sp.Orientation = Orientation.Horizontal;
-                        sp.Children.Add(bRemove);
-                        sp.Children.Add(b);
-                        sp.Children.Add(tBox);
-                        row.Content = sp;
+                        Button bAdd = b;
+                        AddRow(grid, bRemove, bAdd, labelname, tBox);
                     }
                     //jxlNET.Resampling
                     else if (propertyInfoValue.PropertyType == typeof(jxlNET.ResamplingBase))
@@ -260,12 +288,8 @@ namespace WpfExample
                             catch (Exception error) { MessageBox.Show(error.ToString()); }
                         });
 
-                        StackPanel sp = new StackPanel();
-                        sp.Orientation = Orientation.Horizontal;
-                        sp.Children.Add(bRemove);
-                        sp.Children.Add(b);
-                        sp.Children.Add(tBox);
-                        row.Content = sp;
+                        Button bAdd = b;
+                        AddRow(grid, bRemove, bAdd, labelname, tBox);
                     }
                     //ColorTransform
                     else if (propertyInfoValue.PropertyType == typeof(jxlNET.ColorTransformBase))
@@ -297,12 +321,8 @@ namespace WpfExample
                             catch (Exception error) { MessageBox.Show(error.ToString()); }
                         });
 
-                        StackPanel sp = new StackPanel();
-                        sp.Orientation = Orientation.Horizontal;
-                        sp.Children.Add(bRemove);
-                        sp.Children.Add(b);
-                        sp.Children.Add(tBox);
-                        row.Content = sp;
+                        Button bAdd = b;
+                        AddRow(grid, bRemove, bAdd, labelname, tBox);
                     }
                     else if (propertyInfoValue.PropertyType == typeof(jxlNET.ColorSpaceBase))
                     {
@@ -333,12 +353,8 @@ namespace WpfExample
                             catch (Exception error) { MessageBox.Show(error.ToString()); }
                         });
 
-                        StackPanel sp = new StackPanel();
-                        sp.Orientation = Orientation.Horizontal;
-                        sp.Children.Add(bRemove);
-                        sp.Children.Add(b);
-                        sp.Children.Add(tBox);
-                        row.Content = sp;
+                        Button bAdd = b;
+                        AddRow(grid, bRemove, bAdd, labelname, tBox);
                     }
 
 
@@ -371,16 +387,14 @@ namespace WpfExample
                         catch (Exception error) { MessageBox.Show(error.ToString()); }
                     });
 
-                    StackPanel sp = new StackPanel();
-                    sp.Orientation = Orientation.Horizontal;
-                    sp.Children.Add(bRemove);
-                    sp.Children.Add(b);
-                    sp.Children.Add(cBox);
-                    row.Content = sp;
+
+                    Button bAdd = b;
+                    AddRow(grid, bRemove, bAdd, labelname, cBox);
 
                 }
 
-                ListBox.Items.Add(row);
+                //ListBox.Items.Add(row);
+                ListBox.Items.Add(grid);
             }
 
         }

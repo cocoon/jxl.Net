@@ -46,6 +46,7 @@
                                        HorizontalAlignment="Right"
                                        VerticalAlignment="Center"
                                        Margin="0,4,8,6"
+                                       Visibility="Collapsed"
                                        />
                                 <Border Padding="6,4,6,0" Grid.Column="1">
                                     <ContentPresenter HorizontalAlignment="Stretch"/>
