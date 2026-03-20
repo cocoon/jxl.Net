@@ -1,5 +1,5 @@
 ﻿<!--
-// Copyright (c) 2021 github.com/cocoon
+// Copyright (c) 2026 github.com/cocoon
 // 
 // The copyright notice shall be included in all copies or substantial portions of the Software.
 // 
@@ -26,6 +26,8 @@
     <Window.Resources>
 
         <core:InverseConverter x:Key="InverseConverter" />
+        <core:InverseConverter x:Key="SliderToMarginConverter" />
+        
 
         <Style x:Key="SliderRepeatButton" TargetType="RepeatButton">
             <Setter Property="SnapsToDevicePixels" Value="true" />
@@ -102,9 +104,9 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    
-    
-    
+
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="184"/>
@@ -115,7 +117,7 @@
             <ColumnDefinition Width="600"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
+
         <Grid.Resources>
             <Style TargetType="{x:Type ListBoxItem}">
                 <Setter Property="Template">
@@ -166,11 +168,8 @@
                 <Label>Encoder Version:</Label>
                 <TextBox ToolTip="{Binding Enc.Options.EncoderVersion, Mode=OneWay}" Text="{Binding Enc.Options.EncoderVersion, Mode=OneWay}" IsReadOnly="True" VerticalContentAlignment="Center"/>
 
-
-
-
                 <Button Name="BtnDecoder" Click="BtnDecoder_Click">Decoder:</Button>
-                
+
                 <!--<TextBox Text="{Binding Enc.Decoder.Options.DecoderPath}" IsReadOnly="True" ToolTip="{Binding Enc.Decoder.Options.DecoderPath}"/>-->
 
                 <TextBox ToolTip="{Binding Enc.Decoder.Options.DecoderPath}" IsReadOnly="True" VerticalContentAlignment="Center">
@@ -212,19 +211,19 @@
                 <Button Name="BtnOutput" Content="..." Width="40" Click="BtnOutput_Click"/>
                 <TextBox Name="txtBoxOutput" Text="{Binding Image2}" ToolTip="{Binding Enc.OutFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" PreviewDragOver="txtBoxOutput_PreviewDragOver"/>
             </DockPanel>
-            
-            
+
+
 
             <DockPanel LastChildFill="True" Margin="4,4,4,4">
-                <!--<Button DockPanel.Dock="Left" Name="btnEncode" Content="Encode" Width="60" Height="40" Click="btnEncode_Click" Background="LimeGreen"/>-->
+
                 <Button DockPanel.Dock="Left" Name="btnEncode" Content="Encode" Width="60" Height="40" Click="btnEncodeAsync_Click" Background="LimeGreen"/>
 
                 <!-- Presets -->
                 <Button DockPanel.Dock="Left" Name="btnSave" Content="Save Preset" Width="80" Height="40" Click="btnSave_Click" ToolTip="Save Preset to File"/>
                 <Button DockPanel.Dock="Left" Name="btnLoad" Content="Load Preset" Width="80" Height="40" Click="btnLoad_Click" ToolTip="Load Preset from File"/>
-                <Label VerticalAlignment="Center">Preset: </Label>
+                <Label VerticalAlignment="Center">Preset:</Label>
                 <ComboBox Name="Presets" ItemsSource="{Binding LoadedPresets}" DisplayMemberPath="Name" Width="200" VerticalAlignment="Center"/>
-                
+
                 <TextBox Height="40" Name="txtBoxStatus" VerticalContentAlignment="Center"></TextBox>
             </DockPanel>
 
@@ -240,12 +239,12 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            
+
             <DockPanel Grid.Column="0" LastChildFill="True">
                 <Label Name="lblProcessText" DockPanel.Dock="Top" FontWeight="Bold" HorizontalContentAlignment="Center" Background="LightGray">Process Text</Label>
 
@@ -274,7 +273,7 @@
             </DockPanel>
 
             <GridSplitter Grid.Column="1" Grid.RowSpan="2" Width="25" HorizontalAlignment="Left" VerticalAlignment="Stretch" ResizeBehavior="BasedOnAlignment"/>
-            
+
             <DockPanel Margin="5,0,0,0" Grid.Column="1" Grid.RowSpan="2" LastChildFill="True">
                 <Label DockPanel.Dock="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" Background="LightGray">Available Parameter</Label>
                 <ListBox  Name="LbParam" HorizontalContentAlignment="Left" >
@@ -287,7 +286,7 @@
             </DockPanel>
 
             <GridSplitter Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ResizeBehavior="BasedOnAlignment"/>
-            
+
             <!-- Row 1 -->
             <DockPanel Grid.Column="0" Grid.Row="1" LastChildFill="True">
                 <Label Name="lblEncoderMessages" HorizontalContentAlignment="Center" Background="LightGray" DockPanel.Dock="Top" FontWeight="Bold">Encoder / Decoder Messages</Label>
@@ -304,53 +303,12 @@
 
         </Grid>
 
-        
         <GridSplitter Grid.Row="1" Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext"/>
         <GridSplitter Grid.Row="1" Grid.Column="1" Width="5" HorizontalAlignment="Left" VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext"/>
-        
+
         <Grid Grid.Row="1" Grid.Column="1">
-
-            <core:ZoomBorder x:Name="ZoomBorder" ClipToBounds="True" Background="Gray">
-                <Grid HorizontalAlignment="Center" >
-                    <Image x:Name="ImageBefore" HorizontalAlignment="Left" Source="{Binding ImageSource1}"/>
-
-
-                    <Rectangle HorizontalAlignment="Left" Width="{Binding Value, ElementName=Slider}" Height="{Binding ActualHeight, ElementName=ImageBefore}">
-                        <Rectangle.Fill>
-                            <ImageBrush x:Name="ImageAfter" Stretch="UniformToFill" AlignmentX="Left" AlignmentY="Top" ImageSource="{Binding ImageSource2, Mode=OneWay}" />
-                        </Rectangle.Fill>
-                    </Rectangle>
-
-                    <Slider x:Name="Slider" Style="{StaticResource Horizontal_Slider}" Maximum="{Binding ActualWidth, ElementName=ImageBefore}" Width="{Binding ActualWidth, ElementName=ImageBefore}" Height="{Binding ActualHeight, ElementName=ImageBefore}" VerticalAlignment="Center" Value="100" />
-<!--
-                    <Slider x:Name="Slider"
-                        Style="{StaticResource Horizontal_Slider}"
-                        Maximum="{Binding ActualWidth, ElementName=ImageBefore}"
-                        Height="20"
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch"
-                        Value="100"
-                        RenderTransformOrigin="0.5,0.5">
-
-                        <Slider.LayoutTransform>
-                            <ScaleTransform
-                                ScaleX="{Binding ElementName=ZoomBorder, Path=CurrentScale, Converter={StaticResource InverseConverter}}"
-                                ScaleY="{Binding ElementName=ZoomBorder, Path=CurrentScale, Converter={StaticResource InverseConverter}}" />
-                        </Slider.LayoutTransform>
-                    </Slider>
--->
-
-                </Grid>
-            </core:ZoomBorder>
-
+            <core:ImageComparisonSlider BeforeImage="{Binding ImageSource1}" AfterImage="{Binding ImageSource2, Mode=OneWay}" />
         </Grid>
 
-
-
     </Grid>
-
-    
-    
-    
-    
 </Window>

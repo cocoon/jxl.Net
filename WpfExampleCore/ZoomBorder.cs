@@ -1,4 +1,18 @@
-﻿//https://stackoverflow.com/a/6782715
+﻿
+// Copyright (c) 2026 github.com/cocoon
+// 
+// The copyright notice shall be included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+// PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+// FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+// DEALINGS IN THE SOFTWARE.
+
+//https://stackoverflow.com/a/6782715
+
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +36,13 @@ namespace WpfExampleCore
         public static readonly DependencyProperty CurrentScaleProperty =
             DependencyProperty.Register(nameof(CurrentScale), typeof(double), typeof(ZoomBorder),
                 new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public event EventHandler TransformChanged;
+
+        private void RaiseTransformChanged()
+        {
+            TransformChanged?.Invoke(this, EventArgs.Empty);
+        }
 
         private TranslateTransform GetTranslateTransform(UIElement element)
         {
@@ -82,6 +103,9 @@ namespace WpfExampleCore
                 var tt = GetTranslateTransform(child);
                 tt.X = 0.0;
                 tt.Y = 0.0;
+
+                RaiseTransformChanged();
+
             }
         }
 
@@ -112,6 +136,8 @@ namespace WpfExampleCore
 
                 tt.X = absoluteX - relative.X * st.ScaleX;
                 tt.Y = absoluteY - relative.Y * st.ScaleY;
+
+                RaiseTransformChanged();
             }
         }
 
@@ -123,6 +149,7 @@ namespace WpfExampleCore
                 start = e.GetPosition(this);
                 origin = new Point(tt.X, tt.Y);
                 this.Cursor = Cursors.Hand;
+                RaiseTransformChanged();
                 child.CaptureMouse();
             }
         }
@@ -133,6 +160,7 @@ namespace WpfExampleCore
             {
                 child.ReleaseMouseCapture();
                 this.Cursor = Cursors.Arrow;
+                RaiseTransformChanged();
             }
         }
 
@@ -151,6 +179,7 @@ namespace WpfExampleCore
                     Vector v = start - e.GetPosition(this);
                     tt.X = origin.X - v.X;
                     tt.Y = origin.Y - v.Y;
+                    RaiseTransformChanged();
                 }
             }
         }

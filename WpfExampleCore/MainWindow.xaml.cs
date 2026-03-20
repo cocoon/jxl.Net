@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021 github.com/cocoon
+﻿// Copyright (c) 2026 github.com/cocoon
 // 
 // The copyright notice shall be included in all copies or substantial portions of the Software.
 // 
@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Windows.Media;
 using jxlNET.Decoder;
 using System.Linq;
+using System.Diagnostics;
 
 namespace WpfExample
 {
@@ -411,6 +412,8 @@ namespace WpfExample
         {
             Application.Current.Resources.MergedDictionaries.Clear();
             if (!Clear) Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("DarkTheme.xaml", UriKind.Relative) });
+
+            Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("Themes/Generic.xaml", UriKind.Relative) });
         }
 
         private void ChkDarkMode_CheckedChanged(object sender, RoutedEventArgs e)
@@ -641,8 +644,8 @@ namespace WpfExample
 
 
 
-        #endregion
 
+        #endregion
 
     }
 }
