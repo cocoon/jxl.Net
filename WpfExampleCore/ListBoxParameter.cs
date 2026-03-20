@@ -112,6 +112,8 @@ namespace WpfExample
                 row.LabelFor = Name;
                 row.ToolTip = tTip;
 
+                grid.ToolTip = tTip;
+
                 Label labelname = new Label { Content = Name };
 
                 Button bRemove = new Button();
