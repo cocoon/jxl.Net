@@ -306,7 +306,7 @@
         <GridSplitter Grid.Row="1" Grid.Column="1" Width="5" HorizontalAlignment="Left" VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext"/>
         
         <Grid Grid.Row="1" Grid.Column="1">
-
+            
             <local:ZoomBorder x:Name="border" ClipToBounds="True" Background="Gray">
                 <Grid HorizontalAlignment="Center" >
                     <Image x:Name="ImageBefore" HorizontalAlignment="Left" Source="{Binding ImageSource1}"/>
@@ -318,9 +318,22 @@
                         </Rectangle.Fill>
                     </Rectangle>
 
-                    <Slider x:Name="Slider" Style="{StaticResource Horizontal_Slider}" Maximum="{Binding ActualWidth, ElementName=ImageBefore}" Width="{Binding ActualWidth, ElementName=ImageBefore}" Height="{Binding ActualHeight, ElementName=ImageBefore}" VerticalAlignment="Center" Value="100" />
+                    <!--<Slider x:Name="Slider" Style="{StaticResource Horizontal_Slider}" Maximum="{Binding ActualWidth, ElementName=ImageBefore}" Width="{Binding ActualWidth, ElementName=ImageBefore}" Height="{Binding ActualHeight, ElementName=ImageBefore}" VerticalAlignment="Center" Value="100" />-->
                 </Grid>
             </local:ZoomBorder>
+
+            <!-- NON-ZOOMED SLIDER OVERLAY -->
+            <Slider x:Name="Slider"
+                Style="{StaticResource Horizontal_Slider}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Stretch"
+                Margin="20,0"
+                Height="20"
+                Maximum="{Binding ActualWidth, ElementName=ImageBefore}"
+                Value="100"
+                Background="Transparent"
+                Panel.ZIndex="10" />
+
         </Grid>
 
 
