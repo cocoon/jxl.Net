@@ -5,13 +5,23 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace WpfExample
+namespace WpfExampleCore
 {
     public class ZoomBorder : Border
     {
         private UIElement child = null;
         private Point origin;
         private Point start;
+
+        public double CurrentScale
+        {
+            get => (double)GetValue(CurrentScaleProperty);
+            set => SetValue(CurrentScaleProperty, value);
+        }
+
+        public static readonly DependencyProperty CurrentScaleProperty =
+            DependencyProperty.Register(nameof(CurrentScale), typeof(double), typeof(ZoomBorder),
+                new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         private TranslateTransform GetTranslateTransform(UIElement element)
         {
@@ -66,6 +76,8 @@ namespace WpfExample
                 st.ScaleX = 1.0;
                 st.ScaleY = 1.0;
 
+                CurrentScale = st.ScaleX;
+
                 // reset pan
                 var tt = GetTranslateTransform(child);
                 tt.X = 0.0;
@@ -95,6 +107,8 @@ namespace WpfExample
 
                 st.ScaleX += zoom;
                 st.ScaleY += zoom;
+
+                CurrentScale = st.ScaleX;
 
                 tt.X = absoluteX - relative.X * st.ScaleX;
                 tt.Y = absoluteY - relative.Y * st.ScaleY;

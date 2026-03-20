@@ -17,12 +17,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfExample"
+        xmlns:core="clr-namespace:WpfExampleCore"
         mc:Ignorable="d"
         
         Icon="005_1024.png"
         Title="JPEG-XL WPF Example UI" Height="900" Width="1630">
 
     <Window.Resources>
+
+        <core:InverseConverter x:Key="InverseConverter" />
 
         <Style x:Key="SliderRepeatButton" TargetType="RepeatButton">
             <Setter Property="SnapsToDevicePixels" Value="true" />
@@ -306,8 +309,8 @@
         <GridSplitter Grid.Row="1" Grid.Column="1" Width="5" HorizontalAlignment="Left" VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext"/>
         
         <Grid Grid.Row="1" Grid.Column="1">
-            
-            <local:ZoomBorder x:Name="border" ClipToBounds="True" Background="Gray">
+
+            <core:ZoomBorder x:Name="ZoomBorder" ClipToBounds="True" Background="Gray">
                 <Grid HorizontalAlignment="Center" >
                     <Image x:Name="ImageBefore" HorizontalAlignment="Left" Source="{Binding ImageSource1}"/>
 
@@ -318,21 +321,26 @@
                         </Rectangle.Fill>
                     </Rectangle>
 
-                    <!--<Slider x:Name="Slider" Style="{StaticResource Horizontal_Slider}" Maximum="{Binding ActualWidth, ElementName=ImageBefore}" Width="{Binding ActualWidth, ElementName=ImageBefore}" Height="{Binding ActualHeight, ElementName=ImageBefore}" VerticalAlignment="Center" Value="100" />-->
-                </Grid>
-            </local:ZoomBorder>
+                    <!-- <Slider x:Name="Slider" Style="{StaticResource Horizontal_Slider}" Maximum="{Binding ActualWidth, ElementName=ImageBefore}" Width="{Binding ActualWidth, ElementName=ImageBefore}" Height="{Binding ActualHeight, ElementName=ImageBefore}" VerticalAlignment="Center" Value="100" /> -->
 
-            <!-- NON-ZOOMED SLIDER OVERLAY -->
-            <Slider x:Name="Slider"
-                Style="{StaticResource Horizontal_Slider}"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Stretch"
-                Margin="20,0"
-                Height="20"
-                Maximum="{Binding ActualWidth, ElementName=ImageBefore}"
-                Value="100"
-                Background="Transparent"
-                Panel.ZIndex="10" />
+                    <Slider x:Name="Slider"
+                        Style="{StaticResource Horizontal_Slider}"
+                        Maximum="{Binding ActualWidth, ElementName=ImageBefore}"
+                        Height="20"
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch"
+                        Value="100"
+                        RenderTransformOrigin="0.5,0.5">
+
+                        <Slider.LayoutTransform>
+                            <ScaleTransform
+                                ScaleX="{Binding ElementName=ZoomBorder, Path=CurrentScale, Converter={StaticResource InverseConverter}}"
+                                ScaleY="{Binding ElementName=ZoomBorder, Path=CurrentScale, Converter={StaticResource InverseConverter}}" />
+                        </Slider.LayoutTransform>
+                    </Slider>
+
+                </Grid>
+            </core:ZoomBorder>
 
         </Grid>
 
