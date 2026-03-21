@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class GroupOrder : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "Order in which groups are stored in the codestream for progressive rendering, default = 0.0 = scanline order. 1 = center-first order.";
         public override string Name => "GroupOrder";
         public override string Param => ParamLong;

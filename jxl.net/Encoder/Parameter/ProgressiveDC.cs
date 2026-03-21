@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class ProgressiveDC : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "progressive_dc, num_dc_frames (number-of-recursive-DC-frames, and maybe add that most sane usage will be =1), Use progressive mode for DC.\nSticks a progressive+lossless Modular-encoded initial DC frame inside of the VarDCT-encoded image.\nWill encode DC as a responsive modular frame.\nHigher values use VarDCT recursively, e.g. =3 does DC (1:8) as VarDCT, with _its_ DC (1:64) also as VarDCT, with _its_ DC (1:512) as responsive modular.\nThat only makes sense for huuuge images.";
         public override string Name => "ProgressiveDC";
         public override string Param => ParamLong;

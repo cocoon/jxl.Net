@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class GroupSize : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "g, group-size, K, [modular encoding] set group size to 128 << K (default: 1 or 2)";
         public override string Name => "GroupSize";
         public override string Param => "-g";

@@ -19,6 +19,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class ColorSpace : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "C, colorspace, K, [modular encoding] color transform: 0=RGB, 1=YCoCg, 2-37=RCT (default: try several, depending on speed)";
         public override string Name => "ColorSpace";
         public override string Param => "-C";

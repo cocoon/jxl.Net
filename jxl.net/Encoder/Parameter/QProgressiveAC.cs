@@ -20,6 +20,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class QProgressiveAC : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "qprogressive_ac, Use the progressive mode for AC.";
         public override string Name => "QProgressiveAC";
         public override string Param => ParamLong;

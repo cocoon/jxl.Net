@@ -43,6 +43,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class FrameIndexing : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "frame_indexing, INDICES, // TODO(tfish): Add a more convenient vanilla alternative. INDICES is of the form '^(0*|1[01]*)'. The i-th position indicates whether the i-th frame will be indexed in the frame index box.";
         public override string Name => "FrameIndexing";
         public override string Param => ParamLong;

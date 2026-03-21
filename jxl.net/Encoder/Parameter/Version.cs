@@ -20,6 +20,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Version : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "V, version, print version number and exit";
         public override string Name => "Version";
         public override string Param => "-V";

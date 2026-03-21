@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Premultiply : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "premultiply, -1|0|1, Force premultiplied (associated) alpha.";
         public override string Name => "Premultiply";
         public override string Param => ParamLong;

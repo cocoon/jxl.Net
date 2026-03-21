@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Dots : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "dots, 0|1, force enable/disable dots generation.";
         public override string Name => "Dots";
         public override string Param => ParamLong;

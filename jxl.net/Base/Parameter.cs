@@ -136,6 +136,7 @@ namespace jxlNET
     [XmlRoot(Namespace = "jxlNET")]
     public abstract class Parameter
     {
+        public abstract bool? Available { get; }
         public abstract string Description { get; }
         public abstract string Name { get; }
         public abstract string Param { get; }

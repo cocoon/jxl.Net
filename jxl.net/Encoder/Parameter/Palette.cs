@@ -22,6 +22,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Palette : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "palette, K, [modular encoding] use a palette if image has at most K colors (default: 1024)";
         public override string Name => "Palette";
         public override string Param => ParamLong;

@@ -22,6 +22,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class CenterX : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "center_x, -1..XSIZE, Set the horizontal position of center for center-first group ordering, range: [-1 .. xsize). -1 = middle of the image. Default = -1.";
         public override string Name => "CenterX";
         public override string Param => ParamLong;

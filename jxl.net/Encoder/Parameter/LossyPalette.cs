@@ -22,6 +22,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class LossyPalette : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "lossy-palette, [modular encoding] quantize to a palette that has fewer entries than would be necessary for perfect preservation; for the time being, it is recommended to set --palette=0 with this option to use the default palette only";
         public override string Name => "LossyPalette";
         public override string Param => ParamLong;

@@ -25,6 +25,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Iterations : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "I, iterations, F, [modular encoding] fraction of pixels used to learn MA trees default=0.5, try 0 for no MA and fast decode";
         public override string Name => "Iterations";
         public override string Param => "-I";

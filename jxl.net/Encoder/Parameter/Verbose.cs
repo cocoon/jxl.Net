@@ -20,6 +20,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Verbose : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "v, verbose, Verbose output(also applies to help).";
         public override string Name => "Verbose";
         public override string Param => "-v";

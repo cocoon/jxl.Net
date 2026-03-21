@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class KeepInvisible : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "keep_invisible\", 0|1, 0 = allow modifying invisible pixels for better density, default for lossy output. 1 = preserve colors of invisible pixels, default for lossless output.";
         public override string Name => "KeepInvisible";
         public override string Param => ParamLong;

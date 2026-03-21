@@ -24,6 +24,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Effort : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "e, effort, EFFORT, Encoder effort setting. Range: 1 .. 9. (available since v0.5.0)\n Valid values are:\n 1|lightning| 2|thunder| 3|falcon| 4|cheetah| 5|hare| 6|wombat| 7|squirrel| 8|kitten| 9|tortoise\n Default: squirrel (7).\n Default: 7. Higher number is more effort (slower).";
         public override string Name => "Effort";
         public override string Param => "-e";

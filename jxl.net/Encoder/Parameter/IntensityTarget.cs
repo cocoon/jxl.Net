@@ -23,6 +23,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class IntensityTarget : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "intensity_target, N, Intensity target of monitor in nits, higher results in higher quality image. Must be strictly positive. Default is 255 for standard images, 4000 for input images known to have PQ or HLG transfer function.";
         public override string Name => "IntensityTarget";
         public override string Param => ParamLong;

@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Noise : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "noise, 0|1, force enable/disable noise generation.";
         public override string Name => "Noise";
         public override string Param => ParamLong;

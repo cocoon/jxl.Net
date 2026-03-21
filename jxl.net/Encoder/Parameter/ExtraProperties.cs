@@ -22,6 +22,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class ExtraProperties : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "E, extra-properties, K, [modular encoding] number of extra MA tree properties to use";
         public override string Name => "ExtraProperties";
         public override string Param => "-E";

@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class FasterDecoding : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "Higher values improve decode speed at the expense of quality or density, default = 0. (0..4)";
         public override string Name => "FasterDecoding";
         public override string Param => ParamLong;

@@ -20,6 +20,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class MiddleOut : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "middleout, Put center groups first in the compressed file.";
         public override string Name => "MiddleOut";
         public override string Param => ParamLong;

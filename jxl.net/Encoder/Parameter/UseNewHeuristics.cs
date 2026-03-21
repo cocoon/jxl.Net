@@ -20,6 +20,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class UseNewHeuristics : jxlNET.Parameter
     {
+        public override bool? Available => false; // not longer available since version ?
         public override string Description => "use_new_heuristics, use new and not yet ready encoder heuristics";
         public override string Name => "UseNewHeuristics";
         public override string Param => ParamLong;

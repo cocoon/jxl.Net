@@ -19,6 +19,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class ColorTransform : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "c, colortransform, 0..2, 0=XYB, 1=None, 2=YCbCr";
         public override string Name => "ColorTransform";
         public override string Param => "-c";

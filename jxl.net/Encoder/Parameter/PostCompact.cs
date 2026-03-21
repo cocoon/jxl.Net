@@ -23,6 +23,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class PostCompact : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "Y, post-compact, PERCENT, [modular encoding] compact channels (per-group) if ratio used/range is below this (default: 80%)";
         public override string Name => "PostCompact";
         public override string Param => "-Y";

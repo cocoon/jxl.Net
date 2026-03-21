@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class CodestreamLevel : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "The codestream level. (-1|5 or 10)";
         public override string Name => "CodestreamLevel";
         public override string Param => ParamLong;

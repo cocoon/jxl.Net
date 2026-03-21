@@ -20,6 +20,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class DecoderHints : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "x, dec-hints, key=value,\r        Use with 'raw' formats like PPM which do not store colorspace \r\n        information\r\n            and metadata, or to strip or modify metadata from formats that \r\n        do.\r\n            The key 'color_space' indicates an enumerated ColorEncoding, for \r\n        example:\r\n              -x color_space=RGB_D65_SRG_Per_SRG is sRGB with perceptual \r\n        rendering intent\r\n              -x color_space=RGB_D65_202_Rel_PeQ is Rec.2100 PQ with relative \r\n        \"rendering intent\r\n            Shorthands: sRGB, DisplayP3, Adobe98, Rec2100PQ, Rec2100HLG\r\n            The key 'icc_pathname' refers to a binary file containing an ICC \r\n        profile.\r\n            The keys 'exif', 'xmp', and 'jumbf' refer to a binary file \r\n        containing metadata;\r\n            existing metadata of the same type will be overwritten.\r\n            Specific metadata can be stripped using e.g. -x strip=exif.\r\n            Stripping metadata with lossless JPEG recompression won't \r\n        allow reconstruction,\r\n            hence `--allow_jpeg_reconstruction=0` must be passed in this \r\n        case.";
         public override string Name => "DecoderHints";
         public override string Param => "-x";

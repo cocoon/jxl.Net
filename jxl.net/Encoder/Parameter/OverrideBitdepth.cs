@@ -23,6 +23,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class OverrideBitdepth : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "override_bitdepth, 0=use from image, 1-32=override, If nonzero, store the given bit depth in the JPEG XL file metadata (1-32), instead of using the bit depth from the original input image.";
         public override string Name => "OverrideBitdepth";
         public override string Param => ParamLong;

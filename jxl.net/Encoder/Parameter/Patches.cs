@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Patches : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "patches, 0|1, force enable/disable patches generation.";
         public override string Name => "Patches";
         public override string Param => ParamLong;

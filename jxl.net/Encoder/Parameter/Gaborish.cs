@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Gaborish : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "gaborish, 0|1, force disable gaborish.";
         public override string Name => "Gaborish";
         public override string Param => ParamLong;

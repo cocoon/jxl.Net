@@ -20,6 +20,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class StreamingOutput : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "streaming_output, Enable incremental writing of the output file.";
         public override string Name => "StreamingOutput";
         public override string Param => ParamLong;

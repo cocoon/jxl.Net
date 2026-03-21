@@ -79,9 +79,16 @@ namespace WpfExample
 
                 //foreach (PropertyInfo propertyInfo in propertyInfos)
                 //{
-                    //Console.WriteLine(propertyInfo.Name);
+                //Console.WriteLine(propertyInfo.Name);
                 //}
 
+                // SKIP this parameter if it is marked as not available
+                PropertyInfo propertyInfoAvailable = t.GetProperty("Available");
+                if (propertyInfoAvailable != null) {
+                    var val = propertyInfoAvailable.GetValue(o, null);
+                    if ((bool) val == false)
+                        continue;
+                }
 
                 PropertyInfo propertyInfoDescription = t.GetProperty("Description");
                 string Description = propertyInfoDescription.GetValue(o, null).ToString();

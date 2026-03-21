@@ -20,6 +20,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Modular : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "m, modular, Use the modular mode(lossy / lossless).";
         public override string Name => "Modular";
         public override string Param => "-m";

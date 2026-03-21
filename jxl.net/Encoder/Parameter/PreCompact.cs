@@ -23,6 +23,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class PreCompact : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "X, pre-compact, PERCENT, [modular encoding] compact channels (globally) if ratio used/range is below this (default: 80%)";
         public override string Name => "PreCompact";
         public override string Param => "-X";

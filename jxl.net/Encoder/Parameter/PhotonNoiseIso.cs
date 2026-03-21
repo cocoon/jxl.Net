@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class PhotonNoiseIso : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "Add noise to the image emulating photographic \"film or sensor noise, default = 0. Higher values add more noise, e.g. 100 gives a low amount of noise, 3200 gives a lot of noise.";
         public override string Name => "PhotonNoiseIso";
         public override string Param => ParamLong;

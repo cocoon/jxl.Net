@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class SaliencyNumProgressiveSteps : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "saliency_num_progressive_steps, N";
         public override string Name => "SaliencyNumProgressiveSteps";
         public override string Param => ParamLong;

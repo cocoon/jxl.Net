@@ -20,6 +20,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Strip : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "strip, Do not encode using container format (strips Exif/XMP/JPEG bitstream reconstruction data)";
         public override string Name => "Strip";
         public override string Param => ParamLong;

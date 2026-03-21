@@ -19,6 +19,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Resampling : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "resampling, 1|2|4|8, Subsample all color channels by this factor";
         public override string Name => "Resampling";
         public override string Param => ParamLong;

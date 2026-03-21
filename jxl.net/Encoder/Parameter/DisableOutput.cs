@@ -20,6 +20,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class DisableOutput : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "disable_output, Do not write an output file.";
         public override string Name => "DisableOutput";
         public override string Param => ParamLong;

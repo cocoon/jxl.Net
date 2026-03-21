@@ -20,6 +20,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class StreamingInput : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "streaming_input, Enable streaming processing of the input file, supported for PPM and PGM input.";
         public override string Name => "StreamingInput";
         public override string Param => ParamLong;

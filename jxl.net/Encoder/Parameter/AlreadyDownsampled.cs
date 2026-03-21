@@ -20,6 +20,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class AlreadyDownsampled : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "already_downsampled, Do not downsample before encoding, but still signal that the decoder should upsample.";
         public override string Name => "AlreadyDownsampled";
         public override string Param => ParamLong;

@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class PrintProfile : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "print_profile, 0|1, print timing information before exiting";
         public override string Name => "PrintProfile";
         public override string Param => ParamLong;

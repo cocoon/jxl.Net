@@ -20,6 +20,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Progressive : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "p, progressive, Enable progressive/responsive decoding.";
         public override string Name => "Progressive";
         public override string Param => "-p";

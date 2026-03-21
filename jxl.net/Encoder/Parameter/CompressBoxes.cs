@@ -22,6 +22,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class CompressBoxes : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "Disable/enable Brotli compression for metadata boxes, default = 1. 0 = disable. 1 = enable.";
         public override string Name => "CompressBoxes";
         public override string Param => ParamLong;

@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class BrotliEffort : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "Brotli effort, range: 0 .. 11, default = 9. Higher values allow more computation targeting higher density.";
         public override string Name => "BrotliEffort";
         public override string Param => ParamLong;

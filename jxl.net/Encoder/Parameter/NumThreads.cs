@@ -26,6 +26,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class NumThreads : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "num_threads, N, number of worker threads (zero = none).";
         public override string Name => "NumThreads";
         public override string Param => ParamLong;

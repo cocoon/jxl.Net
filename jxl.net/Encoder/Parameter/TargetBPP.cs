@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class TargetBPP : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "target_bpp, BPP, (Aim at file size that has N bits per pixel.\nCompresses to 1 % of the target BPP in ideal conditions.";
         public override string Name => "TargetBPP";
         public override string Param => ParamLong;

@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class MQuality : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "Q, mquality, luma_q[, chroma_q], [modular encoding] lossy quality (100=lossless, lower is more lossy)";
         public override string Name => "MQuality";
         public override string Param => "-Q";

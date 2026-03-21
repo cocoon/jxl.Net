@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class UpsamplingMode : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "upsampling_mode, -1|0|1, Decoder upsampling mode, mostly useful in combination with --already_downsampled. -1 = non-separable upsampling. 0 = nearest neighbor (useful for pixel art). Default = -1.";
         public override string Name => "UpsamplingMode";
         public override string Param => ParamLong;

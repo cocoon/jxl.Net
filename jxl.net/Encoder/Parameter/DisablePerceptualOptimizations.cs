@@ -20,6 +20,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class DisablePerceptualOptimizations : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "disable_perceptual_optimizations, Disable perceptual optimizations.";
         public override string Name => "DisablePerceptualOptimizations";
         public override string Param => ParamLong;

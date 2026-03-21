@@ -21,6 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Container : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "container, 0|1, 0 = do not use the container format unless it is needed. 1 = use the container format even if it is not needed.";
         public override string Name => "Container";
         public override string Param => ParamLong;

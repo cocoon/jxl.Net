@@ -19,6 +19,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class EdgePreservingFilterLevel : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "epf, -1..3, Edge preserving filter level (-1 = choose based on quality, default)";
         public override string Name => "EdgePreservingFilterLevel";
         public override string Param => ParamLong;
