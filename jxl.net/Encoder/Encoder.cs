@@ -36,11 +36,15 @@ namespace jxlNET.Encoder
 
         public static List<string> AllowedExtensions = new List<string>
         {
+            ".jxl",
+            ".gif",
             ".png",
             ".apng",
             ".jpeg",
             ".jpg",
+            ".pam",
             ".ppm",
+            ".pnm",
             ".pfm",
             ".pgx"
         };
