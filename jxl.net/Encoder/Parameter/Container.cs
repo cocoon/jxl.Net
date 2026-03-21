@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021 github.com/cocoon
+﻿// Copyright (c) 2026 github.com/cocoon
 // 
 // The copyright notice shall be included in all copies or substantial portions of the Software.
 // 
@@ -9,22 +9,69 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
+using System;
+using System.Diagnostics.Contracts;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
 {
-
     /// <summary>
-    /// "container", "Always encode using container format (default: only if needed)",
+    /// "container, 0|1, 0 = do not use the container format unless it is needed. 1 = use the container format even if it is not needed."
     /// </summary>
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Container : jxlNET.Parameter
     {
-        public override string Description => "container, Always encode using container format (default: only if needed)";
+        public override string Description => "container, 0|1, 0 = do not use the container format unless it is needed. 1 = use the container format even if it is not needed.";
         public override string Name => "Container";
         public override string Param => ParamLong;
         public override string ParamLong => "--container";
-        public override OptionType OptionType => OptionType.Flag;
+        public override OptionType OptionType => OptionType.Value;
+
+        //Constructor
+        public Container() { }
+        public Container(int Value)
+        {
+            this.Value = Value;
+        }
+
+        [XmlIgnoreAttribute]
+        public int MinValue = 0;
+        [XmlIgnoreAttribute]
+        public int MaxValue = 1;
+
+        private int _value = 0;
+
+        /// <summary>
+        /// Valid values are: [0|1]
+        /// </summary>
+        public int Value
+        {
+            get
+            {
+                Contract.Requires(_value >= MinValue);
+                Contract.Requires(_value <= MaxValue);
+                return _value;
+            }
+            set
+            {
+                Contract.Requires(value >= MinValue);
+                Contract.Requires(value <= MaxValue);
+
+                if (value < MinValue || value > MaxValue)
+                {
+                    throw new ArgumentOutOfRangeException("Valid values are: [" + MinValue + ":" + MaxValue + "]");
+                }
+
+                _value = value;
+            }
+
+        }
+
+        public override string ToString()
+        {
+            return Param + " " + Value.ToString();
+        }
+
 
     }
 }
