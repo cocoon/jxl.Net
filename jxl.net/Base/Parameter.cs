@@ -25,28 +25,44 @@ namespace jxlNET
     }
 
     // ENCODER
+    [XmlInclude(typeof(jxlNET.Encoder.Parameters.AllowJpegReconstruction))]
+    [XmlInclude(typeof(jxlNET.Encoder.Parameters.AlreadyDownsampled))]
+    [XmlInclude(typeof(jxlNET.Encoder.Parameters.BrotliEffort))]
+    [XmlInclude(typeof(jxlNET.Encoder.Parameters.CenterX))]
+    [XmlInclude(typeof(jxlNET.Encoder.Parameters.CenterY))]
+    [XmlInclude(typeof(jxlNET.Encoder.Parameters.CodestreamLevel))]
     [XmlInclude(typeof(jxlNET.Encoder.Parameters.ColorSpace))]
     [XmlInclude(typeof(jxlNET.ColorSpaceBase))]
     [XmlInclude(typeof(jxlNET.ColorSpaceName))]
     [XmlInclude(typeof(jxlNET.Encoder.Parameters.ColorTransform))]
     [XmlInclude(typeof(jxlNET.ColorTransformBase))]
+    [XmlInclude(typeof(jxlNET.Encoder.Parameters.CompressBoxes))]
     [XmlInclude(typeof(Container))]
 
+    [XmlInclude(typeof(DecoderHints))]
+    [XmlInclude(typeof(DisableOutput))]
+    [XmlInclude(typeof(DisablePerceptualOptimizations))]
     [XmlInclude(typeof(Distance))]
     [XmlInclude(typeof(Dots))]
 
     [XmlInclude(typeof(jxlNET.Encoder.Parameters.EdgePreservingFilterLevel))]
     [XmlInclude(typeof(jxlNET.EdgePreservingFilterLevelBase))]
-    
+    [XmlInclude(typeof(Effort))]
     [XmlInclude(typeof(ExtraProperties))]
 
+    [XmlInclude(typeof(FasterDecoding))]
+    [XmlInclude(typeof(FrameIndexing))]
+
     [XmlInclude(typeof(Gaborish))]
+    [XmlInclude(typeof(GroupOrder))]
     [XmlInclude(typeof(GroupSize))]
 
     [XmlInclude(typeof(IntensityTarget))]
     [XmlInclude(typeof(Iterations))]
 
     [XmlInclude(typeof(JpegTranscode))]
+
+    [XmlInclude(typeof(KeepInvisible))]
 
     [XmlInclude(typeof(LossyPalette))]
     
@@ -62,9 +78,12 @@ namespace jxlNET
     [XmlInclude(typeof(OverrideBitdepth))]
     
     [XmlInclude(typeof(Palette))]
+    [XmlInclude(typeof(Patches))]
+    [XmlInclude(typeof(PhotonNoiseIso))]
     [XmlInclude(typeof(PostCompact))]
     [XmlInclude(typeof(PreCompact))]
     [XmlInclude(typeof(Predictor))]
+    [XmlInclude(typeof(Premultiply))]
     [XmlInclude(typeof(PrintProfile))]
     [XmlInclude(typeof(Progressive))]
     [XmlInclude(typeof(ProgressiveAC))]
@@ -81,12 +100,14 @@ namespace jxlNET
     [XmlInclude(typeof(SaliencyNumProgressiveSteps))]
     [XmlInclude(typeof(SaliencyThreshold))]
     [XmlInclude(typeof(Speed))]
-    [XmlInclude(typeof(Effort))]
+    [XmlInclude(typeof(StreamingInput))]
+    [XmlInclude(typeof(StreamingOutput))]
     [XmlInclude(typeof(Strip))]
 
     [XmlInclude(typeof(TargetBPP))]
     [XmlInclude(typeof(TargetSize))]
 
+    [XmlInclude(typeof(UpsamplingMode))]
     [XmlInclude(typeof(UseNewHeuristics))]
 
     [XmlInclude(typeof(Verbose))]
