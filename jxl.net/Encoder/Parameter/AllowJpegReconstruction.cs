@@ -22,7 +22,7 @@ namespace jxlNET.Encoder.Parameters
     public class AllowJpegReconstruction : jxlNET.Parameter
     {
         public override string Description => "Disable/enable storing JPEG reconstruction metadata with lossless JPEG transcoding, default = 1. 0 = disable. 1 = enable. --allow_jpeg_reconstruction=0";
-        public override string Name => "Gaborish";
+        public override string Name => "AllowJpegReconstruction";
         public override string Param => ParamLong;
         public override string ParamLong => "--allow_jpeg_reconstruction";
         public override OptionType OptionType => OptionType.Value;
