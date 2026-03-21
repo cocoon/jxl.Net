@@ -365,6 +365,7 @@ namespace WpfExample
                 {
                     CheckBox cBox = new CheckBox();
                     cBox.ToolTip = tTip;
+                    cBox.VerticalAlignment = VerticalAlignment.Center;
                     //row.Content = cBox;
 
                     Button b = new Button();
