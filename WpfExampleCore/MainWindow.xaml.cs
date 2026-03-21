@@ -411,7 +411,11 @@ namespace WpfExample
         void ApplyTheme(bool Clear)
         {
             Application.Current.Resources.MergedDictionaries.Clear();
-            if (!Clear) Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("DarkTheme.xaml", UriKind.Relative) });
+
+            if (!Clear)
+                Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("Themes/DarkTheme.xaml", UriKind.Relative) });
+            else
+                Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("Themes/LightTheme.xaml", UriKind.Relative) });
 
             Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("Themes/Generic.xaml", UriKind.Relative) });
         }

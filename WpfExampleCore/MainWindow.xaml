@@ -27,7 +27,6 @@
 
         <core:InverseConverter x:Key="InverseConverter" />
         <core:InverseConverter x:Key="SliderToMarginConverter" />
-        
 
         <Style x:Key="SliderRepeatButton" TargetType="RepeatButton">
             <Setter Property="SnapsToDevicePixels" Value="true" />
@@ -165,7 +164,7 @@
                 </TextBox>
 
 
-                <Label>Encoder Version:</Label>
+                <Label Style="{DynamicResource LabelTitleStyle}">Encoder Version:</Label>
                 <TextBox ToolTip="{Binding Enc.Options.EncoderVersion, Mode=OneWay}" Text="{Binding Enc.Options.EncoderVersion, Mode=OneWay}" IsReadOnly="True" VerticalContentAlignment="Center"/>
 
                 <Button Name="BtnDecoder" Click="BtnDecoder_Click">Decoder:</Button>
@@ -191,11 +190,11 @@
 
                 <!--<TextBox Text="{Binding Enc.Decoder.Options.DecoderPath}" IsReadOnly="True" ToolTip="{Binding Enc.Decoder.Options.DecoderPath}"/>-->
 
-                <Label>Decoder Version:</Label>
+                <Label Style="{DynamicResource LabelTitleStyle}">Decoder Version:</Label>
                 <TextBox ToolTip="{Binding Enc.Decoder.Options.DecoderVersion, Mode=OneWay}" Text="{Binding Enc.Decoder.Options.DecoderVersion, Mode=OneWay}" IsReadOnly="True" VerticalContentAlignment="Center"/>
 
 
-                <Label>Darkmode:</Label>
+                <Label Style="{DynamicResource LabelTitleStyle}">Darkmode:</Label>
                 <CheckBox Name="ChkDarkMode" VerticalAlignment="Center" Checked="ChkDarkMode_CheckedChanged" Unchecked="ChkDarkMode_CheckedChanged"/>
             </DockPanel>
 
@@ -246,7 +245,7 @@
             </Grid.ColumnDefinitions>
 
             <DockPanel Grid.Column="0" LastChildFill="True">
-                <Label Name="lblProcessText" DockPanel.Dock="Top" FontWeight="Bold" HorizontalContentAlignment="Center" Background="LightGray">Process Text</Label>
+                <Label Name="lblProcessText" DockPanel.Dock="Top" FontWeight="Bold" HorizontalContentAlignment="Center" Style="{DynamicResource LabelTitleStyle}" >Process Text</Label>
 
                 <TextBox Background="Transparent" Name="txtBlockProcessText" FontFamily="Lucida Console" BorderThickness="0" IsReadOnly="False" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                     <TextBox.Text>
@@ -275,7 +274,7 @@
             <GridSplitter Grid.Column="1" Grid.RowSpan="2" Width="25" HorizontalAlignment="Left" VerticalAlignment="Stretch" ResizeBehavior="BasedOnAlignment"/>
 
             <DockPanel Margin="5,0,0,0" Grid.Column="1" Grid.RowSpan="2" LastChildFill="True">
-                <Label DockPanel.Dock="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" Background="LightGray">Available Parameter</Label>
+                <Label DockPanel.Dock="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" Style="{DynamicResource LabelTitleStyle}">Available Parameter</Label>
                 <ListBox  Name="LbParam" HorizontalContentAlignment="Left" >
                     <ListBox.Resources>
                         <Style TargetType="{x:Type TextBox}">
@@ -289,7 +288,7 @@
 
             <!-- Row 1 -->
             <DockPanel Grid.Column="0" Grid.Row="1" LastChildFill="True">
-                <Label Name="lblEncoderMessages" HorizontalContentAlignment="Center" Background="LightGray" DockPanel.Dock="Top" FontWeight="Bold">Encoder / Decoder Messages</Label>
+                <Label Name="lblEncoderMessages" HorizontalContentAlignment="Center" DockPanel.Dock="Top" FontWeight="Bold" Style="{DynamicResource LabelTitleStyle}">Encoder / Decoder Messages</Label>
 
                 <TextBox Background="Transparent" Name="txtBoxEncoderMessages" FontFamily="Lucida Console" BorderThickness="0" IsReadOnly="False" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                     <TextBox.Text>
