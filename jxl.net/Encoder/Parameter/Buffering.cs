@@ -16,12 +16,12 @@ using System.Xml.Serialization;
 namespace jxlNET.Encoder.Parameters
 {
     /// <summary>
-    /// "buffering, -1..3,\r\n        How frames are buffered when encoding, which affects memory usage and \r\n        compression.    \r\n        -1 = encoder chooses (default). \r\n        0 = buffer everything (most memory, best compression).    \r\n        1 = stream input for large images, buffer output. \r\n        2 = stream input, buffer output.    \r\n        3 = stream both input and output (least memory, worst compression)"
+    /// "[vNext] buffering, -1..3,\r\n        How frames are buffered when encoding, which affects memory usage and \r\n        compression.    \r\n        -1 = encoder chooses (default). \r\n        0 = buffer everything (most memory, best compression).    \r\n        1 = stream input for large images, buffer output. \r\n        2 = stream input, buffer output.    \r\n        3 = stream both input and output (least memory, worst compression)"
     /// </summary>
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Buffering : jxlNET.Parameter
     {
-        public override bool? Available => true;
+        public override bool? Available => true; // will be available in vNext? added here: https://github.com/libjxl/libjxl/commit/acc28c06ebf2a0532dec914e7f2bccf773cdce7d#diff-6cbf7ca24c8ed2034d72aa4952b88d3714bbcfdb92fd3ab6f9dfe9898337a107R241
         public override string Description => "buffering, -1..3,\r\n        How frames are buffered when encoding, which affects memory usage and \r\n        compression.    \r\n        -1 = encoder chooses (default). \r\n        0 = buffer everything (most memory, best compression).    \r\n        1 = stream input for large images, buffer output. \r\n        2 = stream input, buffer output.    \r\n        3 = stream both input and output (least memory, worst compression)";
         public override string Name => "Buffering";
         public override string Param => ParamLong;
