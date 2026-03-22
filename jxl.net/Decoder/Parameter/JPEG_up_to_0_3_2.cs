@@ -25,6 +25,7 @@ namespace jxlNET.Decoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class JPEG_up_to_0_3_2 : jxlNET.Parameter
     {
+        public override bool? Available => false;
         public override string Description => "j, jpeg, decode directly to JPEG when possible.\nDepending on the JPEG XL mode used when encoding this will produce an exact original JPEG file, a lossless pixel image data in a JPEG file or just a similar JPEG than the original image.\nThe output file if provided must be a .jpg or .jpeg file.";
         public override string Name => "JPEG";
         public override string Param => "-j";

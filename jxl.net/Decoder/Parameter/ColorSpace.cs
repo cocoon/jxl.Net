@@ -20,6 +20,7 @@ namespace jxlNET.Decoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class ColorSpace : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "\0, color_space, RGB_D65_SRG_Rel_Lin, defaults to original (input) color space";
         public override string Name => "ColorSpace";
         public override string Param => ParamLong;

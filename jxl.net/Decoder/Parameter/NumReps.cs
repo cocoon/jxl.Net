@@ -22,6 +22,7 @@ namespace jxlNET.Decoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class NumReps : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "num_reps, N, how many times to compress.";
         public override string Name => "NumReps";
         public override string Param => ParamLong;

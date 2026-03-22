@@ -20,6 +20,7 @@ namespace jxlNET.Decoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class AllowMoreProgressiveSteps : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "\0, allow_more_progressive_steps, allow decoding more progressive steps in truncated files. No effect without --allow_partial_files";
         public override string Name => "AllowMoreProgressiveSteps";
         public override string Param => ParamLong;

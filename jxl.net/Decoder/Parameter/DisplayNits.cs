@@ -23,6 +23,7 @@ namespace jxlNET.Decoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class DisplayNits : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "\0, display_nits, 0.3-250, luminance range of the display to which to tone-map; the lower bound can be omitted, &display_nits, &ParseLuminanceRange);";
         public override string Name => "DisplayNits";
         public override string Param => ParamLong;

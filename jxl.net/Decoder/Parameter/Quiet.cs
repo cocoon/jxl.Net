@@ -24,6 +24,7 @@ namespace jxlNET.Decoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class Quiet : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "\0, quiet, silence output(except for errors)";
         public override string Name => "Quiet";
         public override string Param => ParamLong;

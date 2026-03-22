@@ -20,6 +20,7 @@ namespace jxlNET.Decoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class PrintReadBytes : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "\0, print_read_bytes, print total number of decoded bytes";
         public override string Name => "PrintReadBytes";
         public override string Param => ParamLong;

@@ -23,6 +23,7 @@ namespace jxlNET.Decoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class DownSampling : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "s, downsampling, 1,2,4,8,16, maximum permissible downsampling factor (values greater than 16 will return the LQIP if available)";
         public override string Name => "DownSampling";
         public override string Param => "-s";

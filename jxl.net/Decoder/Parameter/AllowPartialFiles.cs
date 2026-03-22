@@ -20,6 +20,7 @@ namespace jxlNET.Decoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class AllowPartialFiles : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "\0, allow_partial_files, allow decoding of truncated files";
         public override string Name => "AllowPartialFiles";
         public override string Param => ParamLong;

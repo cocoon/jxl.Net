@@ -21,6 +21,7 @@ namespace jxlNET.Decoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class PrintInfo : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "\0, print_info, 0|1, print AuxOut before exiting";
         public override string Name => "PrintInfo";
         public override string Param => ParamLong;

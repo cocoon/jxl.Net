@@ -27,6 +27,7 @@ namespace jxlNET.Decoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class ToneMap : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "\0, tone_map, tone map the image to the luminance range indicated by --display_nits instead of performing a naive 0-1 -> 0-1 conversion, &tone_map, &SetBooleanTrue)";
         public override string Name => "ToneMap";
         public override string Param => ParamLong;

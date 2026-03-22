@@ -21,6 +21,7 @@ namespace jxlNET.Decoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class BitsPerSample : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "\0, bits_per_sample, N, defaults to original (input) bit depth";
         public override string Name => "BitsPerSample";
         public override string Param => ParamLong;

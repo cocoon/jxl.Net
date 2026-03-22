@@ -24,6 +24,7 @@ namespace jxlNET.Decoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class UseSJpeg : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "\0, use_sjpeg, use sjpeg instead of libjpeg for JPEG output";
         public override string Name => "UseSJpeg";
         public override string Param => ParamLong;

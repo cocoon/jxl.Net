@@ -25,6 +25,7 @@ namespace jxlNET.Decoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Decoder.Parameters")]
     public class JPEG : jxlNET.Parameter
     {
+        public override bool? Available => true;
         public override string Description => "j, pixels_to_jpeg, By default, if the input JPEG XL contains a recompressed JPEG file, djxl reconstructs the exact original JPEG file. This flag causes the decoder to instead decode the image to pixels and encode a new (lossy) JPEG. The output file if provided must be a .jpg or .jpeg file.";
         public override string Name => "JPEG";
         public override string Param => "-j";
