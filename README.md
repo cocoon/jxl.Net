@@ -26,7 +26,7 @@ Initial version used for development was v0.3.6, last tested is nightly v0.12.0 
 # WPF GUI Example 
 An example project is available that is using jxl.Net
 
-![2021-03-27_WPF_UI_with_ImageComparison_DarkMode](https://user-images.githubusercontent.com/1071741/112734453-25d30080-8f46-11eb-8c63-689ad52f1707.png)
+<img width="1320" height="893" alt="2026-03-22_jxl_encoder" src="https://github.com/user-attachments/assets/2387a517-5667-4d6b-b1ef-466caddac703" />
 
 ## jxlViewer with slider to compare images
 
