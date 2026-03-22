@@ -26,7 +26,7 @@ namespace jxlNET.Encoder.Parameters
         public override string Description => "E, modular_nb_prev_channels, -1..11,\r\n        Maximum number of previous-channel MA tree properties to use, default \r\n        -1. -1 = encoder chooses.";
         public override string Name => "ModularPreviousChannels";
         public override string Param => "-E";
-        public override string ParamLong => "--extra-properties";
+        public override string ParamLong => "--modular_nb_prev_channels";
         public override OptionType OptionType => OptionType.Value;
 
         //Constructor

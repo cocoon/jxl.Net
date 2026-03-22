@@ -25,7 +25,7 @@ namespace jxlNET.Encoder.Parameters
         public override string Description => "keep_invisible\", 0|1, 0 = allow modifying invisible pixels for better density, default for lossy output. 1 = preserve colors of invisible pixels, default for lossless output.";
         public override string Name => "KeepInvisible";
         public override string Param => ParamLong;
-        public override string ParamLong => "--premultiply";
+        public override string ParamLong => "--keep_invisible";
         public override OptionType OptionType => OptionType.Value;
 
         //Constructor
