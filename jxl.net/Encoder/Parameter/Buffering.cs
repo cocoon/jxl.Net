@@ -25,7 +25,7 @@ namespace jxlNET.Encoder.Parameters
         public override string Description => "buffering, -1..3,\r\n        How frames are buffered when encoding, which affects memory usage and \r\n        compression.    \r\n        -1 = encoder chooses (default). \r\n        0 = buffer everything (most memory, best compression).    \r\n        1 = stream input for large images, buffer output. \r\n        2 = stream input, buffer output.    \r\n        3 = stream both input and output (least memory, worst compression)";
         public override string Name => "Buffering";
         public override string Param => ParamLong;
-        public override string ParamLong => "--photon_noise_iso";
+        public override string ParamLong => "--buffering";
         public override OptionType OptionType => OptionType.Value;
 
         //Constructor
