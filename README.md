@@ -20,7 +20,7 @@ EncoderOptions encOptions = new EncoderOptions
 };
 ```
 
-Initial version used for development was v0.3.6, last tested v0.11.2 (maybe some old parameters are no longer available like UseNewHeuristics or new ones might be missing and would need updates).
+Initial version used for development was v0.3.6, last tested is nightly v0.12.0 4a26aa1 (some old parameters are no longer available and are disabled, like UseNewHeuristics or new ones might be missing and would need updates).
 
 
 # WPF GUI Example 
