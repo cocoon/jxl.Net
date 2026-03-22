@@ -22,7 +22,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class SaliencyThreshold : jxlNET.Parameter
     {
-        public override bool? Available => true;
+        public override bool? Available => false; //no longer available in v0.11.2 since?
         public override string Description => "saliency_threshold, 0..1";
         public override string Name => "SaliencyThreshold";
         public override string Param => ParamLong;

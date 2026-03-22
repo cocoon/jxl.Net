@@ -21,7 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class NearLossless : jxlNET.Parameter
     {
-        public override bool? Available => true;
+        public override bool? Available => false; // no longer available in v0.11.2 since?
         public override string Description => "N, near-lossless, max_d, [modular encoding] apply near-lossless preprocessing with maximum delta = max_d";
         public override string Name => "NearLossless";
         public override string Param => "-N";

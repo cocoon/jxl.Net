@@ -22,7 +22,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class ExtraProperties : jxlNET.Parameter
     {
-        public override bool? Available => true;
+        public override bool? Available => false; // -E is now modular_nb_prev_channels in v0.11.2
         public override string Description => "E, extra-properties, K, [modular encoding] number of extra MA tree properties to use";
         public override string Name => "ExtraProperties";
         public override string Param => "-E";

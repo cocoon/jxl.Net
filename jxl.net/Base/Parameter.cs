@@ -25,9 +25,13 @@ namespace jxlNET
     }
 
     // ENCODER
+    [XmlInclude(typeof(jxlNET.Encoder.Parameters.AllowExpertOptions))]
     [XmlInclude(typeof(jxlNET.Encoder.Parameters.AllowJpegReconstruction))]
     [XmlInclude(typeof(jxlNET.Encoder.Parameters.AlreadyDownsampled))]
+
     [XmlInclude(typeof(jxlNET.Encoder.Parameters.BrotliEffort))]
+    [XmlInclude(typeof(jxlNET.Encoder.Parameters.Buffering))]
+
     [XmlInclude(typeof(jxlNET.Encoder.Parameters.CenterX))]
     [XmlInclude(typeof(jxlNET.Encoder.Parameters.CenterY))]
     [XmlInclude(typeof(jxlNET.Encoder.Parameters.CodestreamLevel))]
@@ -45,6 +49,7 @@ namespace jxlNET
     [XmlInclude(typeof(Distance))]
     [XmlInclude(typeof(Dots))]
 
+    [XmlInclude(typeof(jxlNET.Encoder.Parameters.ECResampling))]
     [XmlInclude(typeof(jxlNET.Encoder.Parameters.EdgePreservingFilterLevel))]
     [XmlInclude(typeof(jxlNET.EdgePreservingFilterLevelBase))]
     [XmlInclude(typeof(Effort))]
@@ -64,10 +69,15 @@ namespace jxlNET
 
     [XmlInclude(typeof(KeepInvisible))]
 
+    [XmlInclude(typeof(LosslessJPEG))]
     [XmlInclude(typeof(LossyPalette))]
     
     [XmlInclude(typeof(MiddleOut))]
     [XmlInclude(typeof(Modular))]
+    [XmlInclude(typeof(ModularLossyPalette))]
+    [XmlInclude(typeof(ModularPaletteColors))]
+    [XmlInclude(typeof(ModularPredictor))]
+    [XmlInclude(typeof(ModularPreviousChannels))]
     [XmlInclude(typeof(MQuality))]
 
     [XmlInclude(typeof(NearLossless))]

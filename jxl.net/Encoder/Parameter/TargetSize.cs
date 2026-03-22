@@ -21,7 +21,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class TargetSize : jxlNET.Parameter
     {
-        public override bool? Available => true;
+        public override bool? Available => false; //no longer available in v0.11.2 since?
         public override string Description => "target_size, N, (Aim at file size of N bytes.\nCompresses to 1 % of the target size in ideal conditions.\nRuns the same algorithm as --target_bpp";
         public override string Name => "TargetSize";
         public override string Param => ParamLong;

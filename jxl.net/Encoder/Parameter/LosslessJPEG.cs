@@ -16,21 +16,21 @@ using System.Xml.Serialization;
 namespace jxlNET.Encoder.Parameters
 {
     /// <summary>
-    /// "m, modular, 0|1,\r\n                            0 = use VarDCT mode. 1 = use modular mode. \r\n                            Default = encoder chooses."
+    /// "j, lossless_jpeg, 0|1,\r\n        0 = decode JPEG input to pixels and reencode. \r\n        1 = losslessly transcode JPEG data. Default = 1."
     /// </summary>
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
-    public class Modular : jxlNET.Parameter
+    public class LosslessJPEG : jxlNET.Parameter
     {
         public override bool? Available => true;
-        public override string Description => "m, modular, 0|1,\r\n                            0 = use VarDCT mode. 1 = use modular mode. \r\n                            Default = encoder chooses.";
-        public override string Name => "Modular";
-        public override string Param => "-m";
-        public override string ParamLong => "--modular";
+        public override string Description => "j, lossless_jpeg, 0|1,\r\n        0 = decode JPEG input to pixels and reencode. \r\n        1 = losslessly transcode JPEG data. Default = 1.";
+        public override string Name => "LosslessJPEG";
+        public override string Param => "-j";
+        public override string ParamLong => "--lossless_jpeg";
         public override OptionType OptionType => OptionType.Value;
 
         //Constructor
-        public Modular() { }
-        public Modular(int Value)
+        public LosslessJPEG() { }
+        public LosslessJPEG(int Value)
         {
             this.Value = Value;
         }
@@ -40,7 +40,7 @@ namespace jxlNET.Encoder.Parameters
         [XmlIgnoreAttribute]
         public int MaxValue = 1;
 
-        private int _value = 1;
+        private int _value = 0;
 
         /// <summary>
         /// Valid values are: [0|1]
@@ -60,7 +60,7 @@ namespace jxlNET.Encoder.Parameters
 
                 if (value < MinValue || value > MaxValue)
                 {
-                    throw new ArgumentOutOfRangeException("Valid values are: [" + MinValue + ":" + MaxValue + "]");
+                    throw new ArgumentOutOfRangeException("Valid values are: [" + MinValue + ":"+ MaxValue + "]");
                 }
 
                 _value = value;

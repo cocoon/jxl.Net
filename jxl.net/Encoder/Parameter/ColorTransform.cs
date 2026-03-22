@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021 github.com/cocoon
+﻿// Copyright (c) 2026 github.com/cocoon
 // 
 // The copyright notice shall be included in all copies or substantial portions of the Software.
 // 
@@ -14,16 +14,16 @@ using System.Xml.Serialization;
 namespace jxlNET.Encoder.Parameters
 {
     /// <summary>
-    /// 'c', "colortransform", "0..2", "0=XYB, 1=None, 2=YCbCr"
+    /// 'C, modular_colorspace, -1..41,\r\n                            Color transform, default = -1. -1 = try several \r\n                            per group, depending on effort. 0 = RGB (none).\r\n                                1 .. 41 = fixed RCT. 6 = YCoCg."
     /// </summary>
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class ColorTransform : jxlNET.Parameter
     {
         public override bool? Available => true;
-        public override string Description => "c, colortransform, 0..2, 0=XYB, 1=None, 2=YCbCr";
+        public override string Description => "C, modular_colorspace, -1..41,\r\n                            Color transform, default = -1. -1 = try several \r\n                            per group, depending on effort. 0 = RGB (none).\r\n                                1 .. 41 = fixed RCT. 6 = YCoCg.";
         public override string Name => "ColorTransform";
-        public override string Param => "-c";
-        public override string ParamLong => "--colortransform";
+        public override string Param => "-C";
+        public override string ParamLong => "--modular_colorspace";
         public override OptionType OptionType => OptionType.Value;
 
         //Constructor

@@ -16,21 +16,21 @@ using System.Xml.Serialization;
 namespace jxlNET.Encoder.Parameters
 {
     /// <summary>
-    /// "m, modular, 0|1,\r\n                            0 = use VarDCT mode. 1 = use modular mode. \r\n                            Default = encoder chooses."
+    /// "P, modular_predictor, 0..15,\r\n        Predictor(s) to use. 0 = zero. 1 = left. 2 = top. 3 = avg0. 4 = \r\n        select. 5 = gradient.\r\n            6 = weighted. 7 = topright. 8 = topleft. 9 = leftleft. \r\n        10 = avg1. 11 = avg2. 12 = avg3.\r\n            13 = toptop predictive average. 14 = mix 5 and 6. 15 = mix \r\n        everything.\r\n            Default = 14 at effort < 10 and 15 at effort 10."
     /// </summary>
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
-    public class Modular : jxlNET.Parameter
+    public class ModularPredictor : jxlNET.Parameter
     {
         public override bool? Available => true;
-        public override string Description => "m, modular, 0|1,\r\n                            0 = use VarDCT mode. 1 = use modular mode. \r\n                            Default = encoder chooses.";
-        public override string Name => "Modular";
-        public override string Param => "-m";
-        public override string ParamLong => "--modular";
+        public override string Description => "P, modular_predictor, 0..15,\r\n        Predictor(s) to use. 0 = zero. 1 = left. 2 = top. 3 = avg0. 4 = \r\n        select. 5 = gradient.\r\n            6 = weighted. 7 = topright. 8 = topleft. 9 = leftleft. \r\n        10 = avg1. 11 = avg2. 12 = avg3.\r\n            13 = toptop predictive average. 14 = mix 5 and 6. 15 = mix \r\n        everything.\r\n            Default = 14 at effort < 10 and 15 at effort 10.";
+        public override string Name => "ModularPredictor";
+        public override string Param => "-P";
+        public override string ParamLong => "--modular_predictor";
         public override OptionType OptionType => OptionType.Value;
 
         //Constructor
-        public Modular() { }
-        public Modular(int Value)
+        public ModularPredictor() { }
+        public ModularPredictor(int Value)
         {
             this.Value = Value;
         }
@@ -38,12 +38,12 @@ namespace jxlNET.Encoder.Parameters
         [XmlIgnoreAttribute]
         public int MinValue = 0;
         [XmlIgnoreAttribute]
-        public int MaxValue = 1;
+        public int MaxValue = 15;
 
         private int _value = 1;
 
         /// <summary>
-        /// Valid values are: [0|1]
+        /// Valid values are: [0:15]
         /// </summary>
         public int Value
         {

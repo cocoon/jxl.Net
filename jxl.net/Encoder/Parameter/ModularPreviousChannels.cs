@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2026 github.com/cocoon
+﻿// Copyright (c) 2021 github.com/cocoon
 // 
 // The copyright notice shall be included in all copies or substantial portions of the Software.
 // 
@@ -16,34 +16,35 @@ using System.Xml.Serialization;
 namespace jxlNET.Encoder.Parameters
 {
     /// <summary>
-    /// "m, modular, 0|1,\r\n                            0 = use VarDCT mode. 1 = use modular mode. \r\n                            Default = encoder chooses."
+    /// 'E, modular_nb_prev_channels, -1..11,\r\n        Maximum number of previous-channel MA tree properties to use, default \r\n        -1. -1 = encoder chooses.",
+    /// [modular encoding] number of extra MA tree properties to use
     /// </summary>
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
-    public class Modular : jxlNET.Parameter
+    public class ModularPreviousChannels : jxlNET.Parameter
     {
-        public override bool? Available => true;
-        public override string Description => "m, modular, 0|1,\r\n                            0 = use VarDCT mode. 1 = use modular mode. \r\n                            Default = encoder chooses.";
-        public override string Name => "Modular";
-        public override string Param => "-m";
-        public override string ParamLong => "--modular";
+        public override bool? Available => true; // -E is now modular_nb_prev_channels in v0.11.2 and since?
+        public override string Description => "E, modular_nb_prev_channels, -1..11,\r\n        Maximum number of previous-channel MA tree properties to use, default \r\n        -1. -1 = encoder chooses.";
+        public override string Name => "ModularPreviousChannels";
+        public override string Param => "-E";
+        public override string ParamLong => "--extra-properties";
         public override OptionType OptionType => OptionType.Value;
 
         //Constructor
-        public Modular() { }
-        public Modular(int Value)
+        public ModularPreviousChannels() { }
+        public ModularPreviousChannels(int Value)
         {
             this.Value = Value;
         }
 
         [XmlIgnoreAttribute]
-        public int MinValue = 0;
+        public int MinValue = -1;
         [XmlIgnoreAttribute]
-        public int MaxValue = 1;
+        public int MaxValue = 11;
 
-        private int _value = 1;
+        private int _value = -1;
 
         /// <summary>
-        /// Valid values are: [0|1]
+        /// Valid values are: [1:int.MaxValue]
         /// </summary>
         public int Value
         {
@@ -60,7 +61,7 @@ namespace jxlNET.Encoder.Parameters
 
                 if (value < MinValue || value > MaxValue)
                 {
-                    throw new ArgumentOutOfRangeException("Valid values are: [" + MinValue + ":" + MaxValue + "]");
+                    throw new ArgumentOutOfRangeException("Valid values are: [" + MinValue + ":"+ MaxValue + "]");
                 }
 
                 _value = value;

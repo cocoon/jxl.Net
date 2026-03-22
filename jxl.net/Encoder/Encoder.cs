@@ -11,6 +11,7 @@
 
 using jxlNET.Encoder.Parameters;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -279,8 +280,10 @@ namespace jxlNET.Encoder
 
             if(Params != null && Params.Count > 0)
             {
-                foreach (var param in Params)
+                for (int i = 0; i < Params.Count; i++)
                 {
+                    var param = Params[i];
+
                     //SPACER
                     args.Append(" ");
                     //Param
@@ -289,14 +292,18 @@ namespace jxlNET.Encoder
 
                     try
                     {
-                        if (param.GetType() == typeof(Quality) && ((Quality)param).Value < 100) args.Append(" --lossless_jpeg=0");
+                        //if (param.GetType() == typeof(Quality) && ((Quality)param).Value < 100) args.Append(" --lossless_jpeg=0");
+                        if (param.GetType() == typeof(Quality) && ((Quality)param).Value < 100 && !Params.Any(x => x.GetType() == typeof(LosslessJPEG)))
+                            Params.Add(new LosslessJPEG { Value = 0 });
                     }
                     catch(Exception ex)
                     { }
 
                     try
                     {
-                        if (param.GetType() == typeof(Distance) && ((Distance)param).Value > 0) args.Append(" --lossless_jpeg=0");
+                        //if (param.GetType() == typeof(Distance) && ((Distance)param).Value > 0) args.Append(" --lossless_jpeg=0");
+                        if (param.GetType() == typeof(Distance) && ((Distance)param).Value > 0 && !Params.Any(x => x.GetType() == typeof(LosslessJPEG)))
+                            Params.Add(new LosslessJPEG { Value = 0 });
                     }
                     catch (Exception ex)
                     { }

@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021 github.com/cocoon
+﻿// Copyright (c) 2026 github.com/cocoon
 // 
 // The copyright notice shall be included in all copies or substantial portions of the Software.
 // 
@@ -9,25 +9,25 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
+using System;
+using System.Diagnostics.Contracts;
+using System.Globalization;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
 {
 
     /// <summary>
-    /// lossy-palette", [modular encoding] quantize to a palette that has fewer entries than 
-    /// would be necessary for perfect preservation; for the time being, it is 
-    /// recommended to set --palette=0 with this option to use the default palette only
+    /// "allow_expert_options,\r\n        Allow setting effort to 11 for somewhat denser lossless \r\n        compression at an extreme compute cost."
     /// </summary>
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
-    public class LossyPalette : jxlNET.Parameter
+    public class AllowExpertOptions : jxlNET.Parameter
     {
-        public override bool? Available => false; //no longer available since v?
-        public override string Description => "lossy-palette, [modular encoding] quantize to a palette that has fewer entries than would be necessary for perfect preservation; for the time being, it is recommended to set --palette=0 with this option to use the default palette only";
-        public override string Name => "LossyPalette";
+        public override bool? Available => true;
+        public override string Description => "allow_expert_options,\r\n        Allow setting effort to 11 for somewhat denser lossless \r\n        compression at an extreme compute cost.";
+        public override string Name => "AllowExpertOptions";
         public override string Param => ParamLong;
-        public override string ParamLong => "--lossy-palette";
+        public override string ParamLong => "--allow_expert_options";
         public override OptionType OptionType => OptionType.Flag;
-
     }
 }

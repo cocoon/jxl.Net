@@ -15,22 +15,20 @@ using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
 {
-    /// <summary>
-    /// "m, modular, 0|1,\r\n                            0 = use VarDCT mode. 1 = use modular mode. \r\n                            Default = encoder chooses."
-    /// </summary>
+    ///"modular_palette_colors, COLORS,\r\n        Use palette if number of colors is smaller than or equal to this.",
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
-    public class Modular : jxlNET.Parameter
+    public class ModularPaletteColors : jxlNET.Parameter
     {
         public override bool? Available => true;
-        public override string Description => "m, modular, 0|1,\r\n                            0 = use VarDCT mode. 1 = use modular mode. \r\n                            Default = encoder chooses.";
-        public override string Name => "Modular";
-        public override string Param => "-m";
-        public override string ParamLong => "--modular";
+        public override string Description => "modular_palette_colors, COLORS,\r\n        Use palette if number of colors is smaller than or equal to this.";
+        public override string Name => "ModularPaletteColors";
+        public override string Param => ParamLong;
+        public override string ParamLong => "--modular_palette_colors";
         public override OptionType OptionType => OptionType.Value;
 
         //Constructor
-        public Modular() { }
-        public Modular(int Value)
+        public ModularPaletteColors() { }
+        public ModularPaletteColors(int Value)
         {
             this.Value = Value;
         }
@@ -38,12 +36,12 @@ namespace jxlNET.Encoder.Parameters
         [XmlIgnoreAttribute]
         public int MinValue = 0;
         [XmlIgnoreAttribute]
-        public int MaxValue = 1;
+        public int MaxValue = int.MaxValue;
 
-        private int _value = 1;
+        private int _value = 0;
 
         /// <summary>
-        /// Valid values are: [0|1]
+        /// Valid values are: [1:int.MaxValue]
         /// </summary>
         public int Value
         {
@@ -60,7 +58,7 @@ namespace jxlNET.Encoder.Parameters
 
                 if (value < MinValue || value > MaxValue)
                 {
-                    throw new ArgumentOutOfRangeException("Valid values are: [" + MinValue + ":" + MaxValue + "]");
+                    throw new ArgumentOutOfRangeException("Valid values are: [" + MinValue + ":"+ MaxValue + "]");
                 }
 
                 _value = value;

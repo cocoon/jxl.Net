@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021 github.com/cocoon
+﻿// Copyright (c) 2026 github.com/cocoon
 // 
 // The copyright notice shall be included in all copies or substantial portions of the Software.
 // 
@@ -19,14 +19,13 @@ namespace jxlNET.Encoder.Parameters
 
     /// <summary>
     ///'I', "iterations", "F",
-    /// [modular encoding] fraction of pixels used to learn MA trees 
-    /// default=0.5, try 0 for no MA and fast decode
+    /// PERCENT,\r\n        Percentage of pixels used to learn MA trees, default = -1.\r\n            -1 = encoder chooses. 0 = don't use MA trees.\r\n            Higher values use more memory and may result in better \r\n        compression.
     /// </summary>
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class Iterations : jxlNET.Parameter
     {
         public override bool? Available => true;
-        public override string Description => "I, iterations, F, [modular encoding] fraction of pixels used to learn MA trees default=0.5, try 0 for no MA and fast decode";
+        public override string Description => "I, iterations, PERCENT,\r\n        Percentage of pixels used to learn MA trees, default = -1.\r\n            -1 = encoder chooses. 0 = don't use MA trees.\r\n            Higher values use more memory and may result in better \r\n        compression.";
         public override string Name => "Iterations";
         public override string Param => "-I";
         public override string ParamLong => "--iterations";

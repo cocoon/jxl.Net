@@ -20,7 +20,7 @@ namespace jxlNET.Encoder.Parameters
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
     public class JpegTranscode : jxlNET.Parameter
     {
-        public override bool? Available => true;
+        public override bool? Available => false;
         public override string Description => "j, jpeg_transcode, Do lossy transcode of input JPEG file(decode to pixels instead of doing lossless transcode).";
         public override string Name => "JpegTranscode";
         public override string Param => "-j";

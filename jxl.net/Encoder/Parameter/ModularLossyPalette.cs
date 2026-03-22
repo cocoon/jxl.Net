@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021 github.com/cocoon
+﻿// Copyright (c) 2026 github.com/cocoon
 // 
 // The copyright notice shall be included in all copies or substantial portions of the Software.
 // 
@@ -9,22 +9,21 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
+using System;
+using System.Diagnostics.Contracts;
 using System.Xml.Serialization;
 
 namespace jxlNET.Encoder.Parameters
 {
-
-    /// <summary>
-    /// "middleout", "Put center groups first in the compressed file."
-    /// </summary>
+    ///"modular_lossy_palette,\r\n        Use delta palette in a lossy way; it is recommended to also set \r\n        --modular_palette_colors=0 \r\n            with this option to use the default palette only.",
     [XmlRoot(Namespace = "jxlNET.Encoder.Parameters")]
-    public class MiddleOut : jxlNET.Parameter
+    public class ModularLossyPalette : jxlNET.Parameter
     {
-        public override bool? Available => false; // no longer vaialbale in v0.11.2,  //https://github.com/libjxl/libjxl/pull/241 //We rename middleout to centerfirst. This is more consistent with the parameters center_x and center_y. // and not available in cjxl_ng //https://github.com/libjxl/libjxl/commit/15a5cc2dc280ff1b1345f4377bd5be00cbb2cd26
-        public override string Description => "middleout, Put center groups first in the compressed file.";
-        public override string Name => "MiddleOut";
+        public override bool? Available => true;
+        public override string Description => "modular_lossy_palette,\r\n        Use delta palette in a lossy way; it is recommended to also set \r\n        --modular_palette_colors=0 \r\n            with this option to use the default palette only.";
+        public override string Name => "ModularLossyPalette";
         public override string Param => ParamLong;
-        public override string ParamLong => "--middleout";
+        public override string ParamLong => "--modular_lossy_palette";
         public override OptionType OptionType => OptionType.Flag;
 
     }
