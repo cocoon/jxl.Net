@@ -26,7 +26,7 @@ Initial version used for development was v0.3.6, last tested is nightly v0.12.0 
 # WPF GUI Example 
 An example project is available that is using jxl.Net
 
-<img width="1320" height="893" alt="2026-03-22_jxl_encoder" src="https://github.com/user-attachments/assets/2387a517-5667-4d6b-b1ef-466caddac703" />
+<img width="1327" height="903" alt="2026-03-22_jxl_encoder_02" src="https://github.com/user-attachments/assets/ef89f262-9820-4a8a-862e-5f156837a1ed" />
 
 ## jxlViewer with slider to compare images
 
