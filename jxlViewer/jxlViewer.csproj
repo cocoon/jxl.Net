@@ -99,7 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Magick.NET-Q16-HDRI-OpenMP-x64">
-      <Version>14.12.0</Version>
+      <Version>14.13.1</Version>
     </PackageReference>
     <PackageReference Include="Magick.NET.SystemDrawing">
       <Version>8.0.17</Version>
